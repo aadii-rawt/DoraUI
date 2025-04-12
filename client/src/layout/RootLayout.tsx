@@ -1,14 +1,14 @@
-
 import Header from '../components/Header'
 import { Outlet } from 'react-router-dom'
 import Footer from '../components/Footer'
+import React from 'react'
 
-function RootLayout() {
+const RootLayout : React.FC = () =>  {
     return (
         <div className='bg-primary text-white w-full min-h-screen'>
             <Header />
             <Outlet />
-            <Footer />
+            {/* <Footer /> */}
         </div>
     )
 }

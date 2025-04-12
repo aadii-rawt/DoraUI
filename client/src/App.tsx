@@ -2,8 +2,9 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from './pages/Home'
 import RootLayout from './layout/RootLayout'
-import Element from './pages/Element'
+import Elements from './pages/Elements'
 import ElementLayout from './layout/ElementLayout'
+import GetCode from './pages/GetCode'
 
 function App() {
   const router = createBrowserRouter([
@@ -16,19 +17,32 @@ function App() {
           element: <Home />
         },
         {
-          path : "element",
+          path : "",
           element : <ElementLayout />,
           children : [
             {
-              path : "",
-              element : <Element />
+              path : "elements",
+              element : <Elements />
             },
             {
               path : "button",
-              element : ""
+              element : <Elements />
             },
+            {
+              path : "checbox",
+              element : <Elements />
+            },
+            {
+              path : "toggle",
+              element : <Elements />
+            },
+            {
+              path : "/:username/:elementId",
+              element : <GetCode />
+            },
+          
           ]
-        }
+        },
       ],
     },
    
