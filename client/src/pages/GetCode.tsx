@@ -24,9 +24,9 @@ const GetCode: React.FC = () => {
 
       {/* Content Grid */}
       <div className="grid md:grid-cols-2 overflow-hidden bg-[#1a1a1a] rounded-xl">
-        {/* Left Preview Box */}
+        {/*=============== preview of code ==========================*/}
         <Preview btnData={btnData} />
-
+        {/*=================== code ======================================*/}
         <div className="bg-black text-left rounded-xl  relative">
           <div className="flex items-center bg-[#292929] p-2 justify-between ">
             <div className="flex items-center gap-2 font-semibold text-sm">
@@ -34,7 +34,7 @@ const GetCode: React.FC = () => {
             </div>
             <FaRegCopy className="text-gray-400 cursor-pointer" />
           </div>
-          <div className="max-h-[350px] overflow-y-scroll">
+          <div className="max-h-[360px] overflow-y-scroll">
             <SyntaxHighlighter
               language="html"
               style={dracula}

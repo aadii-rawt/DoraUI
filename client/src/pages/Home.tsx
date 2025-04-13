@@ -1,8 +1,9 @@
+import React from 'react'
 
-function Home() {
+const Home : React.FC = () => {
   return (
-    <div className="bg-primary">
-      this is home page
+    <div>
+      
     </div>
   )
 }

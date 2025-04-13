@@ -1,17 +1,24 @@
 import React from 'react'
-import { FaCode, FaBookmark, FaCommentDots } from "react-icons/fa";
-import { Link, useNavigate } from 'react-router-dom';
-const ElementCard: React.FC = ({ btn }) => {
+import { FaBookmark } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
+import { ElementType } from '../../utils/utils';
+
+type PropType = {
+    btn : ElementType
+}
+
+const ElementCard: React.FC<PropType> = ({ btn }) => {
 
     const navigate = useNavigate()
 
-    const handleGetCode = (btn: any) => {
+    const handleGetCode = (btn: ElementType) : void => {
         navigate(`/${btn.user}/${btn.id}`, {
             state: {
                 data: btn
             }
         });
     };
+
     return (
         <div key={btn.id} className="">
             <div style={{background : btn?.previewBackground || "#fff"}} className=' p-2 rounded-lg relative min-h-[200px] flex items-center justify-center group'>

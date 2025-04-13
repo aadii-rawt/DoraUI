@@ -1,8 +1,9 @@
 import React from "react";
 import { FaFilter, FaSearch } from "react-icons/fa";
 import ElementCard from "../components/Element/ElementCard";
+import { ElementType } from "../utils/utils";
 
-const buttons = [
+const buttons : ElementType[] = [
   {
     id: 1,
     preview:
@@ -201,6 +202,7 @@ const buttons = [
 ];
 
 const Elements: React.FC = () => {
+
   return (
     <div className="flex-1 min-h-screen text-white px-4 py-5">
       <div className="mb-8">

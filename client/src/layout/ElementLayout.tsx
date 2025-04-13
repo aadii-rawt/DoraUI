@@ -1,9 +1,10 @@
-import { Outlet } from 'react-router-dom'
+import React from 'react'
 import Sidebar from '../components/Sidebar'
+import { Outlet } from 'react-router-dom'
 
-function ElementLayout() {
+const ElementLayout : React.FC = () => {
   return (
-    <div className='flex'>
+    <div className='flex relative'>
       <Sidebar />
       <Outlet />
     </div>

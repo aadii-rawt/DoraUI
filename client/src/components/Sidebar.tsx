@@ -1,31 +1,20 @@
 import React from "react";
-import { BsGrid } from "react-icons/bs";
-import { CiGrid42 } from "react-icons/ci";
-const Sidebar : React.FC = () => {
-  const menuItems = [
-    { icon: <BsGrid /> , label: "All" },
-    { icon: "", label: "Buttons" },
-    { icon: "" , label: "Checkboxes" },
-    { icon: "", label: "Toggle switches" },
-    { icon: "", label: "Cards" },
-  ];
+import { menuItems } from "../utils/utils";
+import { NavLink } from "react-router-dom";
+
+const Sidebar: React.FC = () => {
 
   return (
-    <div className="w-56 bg-primary text-white p-4 space-y-2">
+    <div className="w-56 max-h-screen bg-primary text-white p-4 space-y-2 sticky top-0 left-0">
       {menuItems.map((item, index) => (
-        <div
+        <NavLink
+          to={item.route}
           key={index}
-          className="flex items-center space-x-3 px-4 py-3 rounded-md cursor-pointer  hover:bg-[#1E1E1E] transition"
-        >
+          className={(({ isActive }) => ` ${isActive && "bg-[#1E1E1E]"} flex text-white text-xl items-center space-x-3 px-4 py-3 rounded-md cursor-pointer hover:bg-[#1E1E1E] transition`)}>
           {item.icon}
           <span className="text-sm">{item.label}</span>
-        </div>
+        </NavLink>
       ))}
-      {/* Chevron (optional, but hidden as requested) */}
-      <div className="flex items-center space-x-3 px-4 py-2 rounded-md opacity-0 pointer-events-none">
-   
-        <span className="text-sm">Hidden Arrow</span>
-      </div>
     </div>
   );
 };

@@ -5,6 +5,7 @@ import RootLayout from './layout/RootLayout'
 import Elements from './pages/Elements'
 import ElementLayout from './layout/ElementLayout'
 import GetCode from './pages/GetCode'
+import { menuItems } from './utils/utils'
 
 function App() {
   const router = createBrowserRouter([
@@ -19,28 +20,11 @@ function App() {
         {
           path : "",
           element : <ElementLayout />,
-          children : [
-            {
-              path : "elements",
-              element : <Elements />
-            },
-            {
-              path : "button",
-              element : <Elements />
-            },
-            {
-              path : "checbox",
-              element : <Elements />
-            },
-            {
-              path : "toggle",
-              element : <Elements />
-            },
+          children : [ ...menuItems.map((item) => ({path : item.route, element :<Elements />})), 
             {
               path : "/:username/:elementId",
               element : <GetCode />
             },
-          
           ]
         },
       ],

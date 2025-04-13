@@ -1,6 +1,11 @@
 import React, { useState } from 'react'
+import { ElementType } from '../utils/utils'
 
-const Preview: React.FC = ({ btnData }) => {
+type PropType = {
+    btnData: ElementType
+}
+
+const Preview: React.FC<PropType> = ({ btnData }) => {
     const [bgColor, setBgColor] = useState<string>(btnData?.previewBackground || "#fff")
     return (
         <div style={{ background: bgColor }} className="relative rounded-l-xl flex justify-center items-center min-h-[300px]">
