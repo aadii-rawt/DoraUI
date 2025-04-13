@@ -14,10 +14,9 @@ const ElementCard: React.FC = ({ btn }) => {
     };
     return (
         <div key={btn.id} className="">
-            <div className='bg-white p-2 rounded-lg relative min-h-[200px] flex items-center justify-center group'>
+            <div style={{background : btn?.previewBackground || "#fff"}} className=' p-2 rounded-lg relative min-h-[200px] flex items-center justify-center group'>
                 <div className="mb-4" dangerouslySetInnerHTML={{ __html: btn.preview }}></div>
                 <button onClick={() => handleGetCode(btn)} className=" items-center gap-2 cursor-pointer absolute bottom-2 right-2 hidden duration-1000 transition-opacity group-hover:flex">
-                    <FaCode size={14} />
                     <span className='bg-primary px-1.5 py-1 rounded text-sm'>Get code</span>
                 </button>
             </div>

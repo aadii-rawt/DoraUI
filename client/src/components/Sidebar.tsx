@@ -1,13 +1,13 @@
 import React from "react";
+import { BsGrid } from "react-icons/bs";
+import { CiGrid42 } from "react-icons/ci";
 const Sidebar : React.FC = () => {
   const menuItems = [
-    { icon: "" , label: "All" },
+    { icon: <BsGrid /> , label: "All" },
     { icon: "", label: "Buttons" },
     { icon: "" , label: "Checkboxes" },
     { icon: "", label: "Toggle switches" },
     { icon: "", label: "Cards" },
-    // optionally hidden item
-    // { icon: <ChevronDown size={18} />, label: "More", hideArrow: true },
   ];
 
   return (

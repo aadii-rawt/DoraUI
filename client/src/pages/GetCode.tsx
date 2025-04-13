@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { FaArrowLeft, FaRegCopy } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
 import Preview from "../components/Preview";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 const GetCode: React.FC = () => {
   const location = useLocation();
@@ -16,9 +18,6 @@ const GetCode: React.FC = () => {
           <span className="text-sm font-medium cursor-pointer">Go back</span>
         </button>
         <div className="flex items-center gap-4 text-black dark:text-white">
-          {/* <span className="text-sm bg-[#e8e8e8] text-black px-2 py-1 rounded">#e8e8e8</span>
-          <FaRegMoon className="cursor-pointer" />
-          <div className="w-5 h-5 border rounded cursor-pointer" /> */}
           <h1>Button by {btnData.user}</h1>
         </div>
       </div>
@@ -26,7 +25,8 @@ const GetCode: React.FC = () => {
       {/* Content Grid */}
       <div className="grid md:grid-cols-2 overflow-hidden bg-[#1a1a1a] rounded-xl">
         {/* Left Preview Box */}
-        <Preview btnData={btnData}/> 
+        <Preview btnData={btnData} />
+
         <div className="bg-black text-left rounded-xl  relative">
           <div className="flex items-center bg-[#292929] p-2 justify-between ">
             <div className="flex items-center gap-2 font-semibold text-sm">
@@ -34,9 +34,16 @@ const GetCode: React.FC = () => {
             </div>
             <FaRegCopy className="text-gray-400 cursor-pointer" />
           </div>
-          <pre className="overflow-x-auto text-sm bg-[#1E1E1E] p-3 text-orange-100">
-            {btnData.preview}
-          </pre>
+          <div className="max-h-[350px] overflow-y-scroll">
+            <SyntaxHighlighter
+              language="html"
+              style={dracula}
+              showLineNumbers
+              wrapLines
+            >
+              {btnData.preview}
+            </SyntaxHighlighter>
+          </div>
         </div>
       </div>
 
