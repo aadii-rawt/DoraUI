@@ -5,23 +5,23 @@ import ElementCard from "../components/Element/ElementCard";
 const buttons = [
   {
     id: 1,
-    preview: /* From Uiverse.io by Rauliqbal */
-      <button
-        className="cursor-pointer bg-gradient-to-b from-indigo-500 to-indigo-600 shadow-[0px_4px_32px_0_rgba(99,102,241,.70)] px-6 py-3 rounded-xl border-[1px] border-slate-500 text-white font-medium group"
+    preview:
+      `<button
+        class="cursor-pointer bg-gradient-to-b from-indigo-500 to-indigo-600 shadow-[0px_4px_32px_0_rgba(99,102,241,.70)] px-6 py-3 rounded-xl border-[1px] border-slate-500 text-white font-medium group"
       >
-        <div className="relative overflow-hidden">
+        <div class="relative overflow-hidden">
           <p
-            className="group-hover:-translate-y-7 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]"
+            class="group-hover:-translate-y-7 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]"
           >
             Button
           </p>
           <p
-            className="absolute top-7 left-0 group-hover:top-0 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]"
+            class="absolute top-7 left-0 group-hover:top-0 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]"
           >
             Button
           </p>
         </div>
-      </button>
+      </button>`
     ,
     user: "Aditya Rawat",
     views: "14K",
@@ -30,8 +30,8 @@ const buttons = [
   },
   {
     id: 2,
-    preview: /* From Uiverse.io by mRcOol7 */ 
-    <button
+    preview:
+      ` <button
       class="group cursor-pointer outline-none hover:rotate-90 duration-300"
       title="Add New"
     >
@@ -49,7 +49,7 @@ const buttons = [
         <path stroke-width="1.5" d="M8 12H16"></path>
         <path stroke-width="1.5" d="M12 16V8"></path>
       </svg>
-    </button>
+    </button>`
     ,
     user: "vinodjangid07",
     views: "14K",
@@ -58,8 +58,8 @@ const buttons = [
   },
   {
     id: 3,
-    preview: /* From Uiverse.io by AKAspidey01 */ 
-    <button
+    preview:
+      `<button
       class="relative border-2 border-black group hover:border-green-500 w-12 h-12 duration-500 overflow-hidden"
       type="button"
     >
@@ -80,7 +80,7 @@ const buttons = [
       <span
         class="absolute w-full h-full bg-green-500 rotate-45 group-hover:bottom-9 duration-500 bottom-12 right-0"
       ></span>
-    </button>
+    </button>`
     ,
     user: "vinodjangid07",
     views: "7.1K",
@@ -89,11 +89,12 @@ const buttons = [
   },
   {
     id: 4,
-    preview: <button
-      className="group relative outline-0 bg-sky-200 [--sz-btn:68px] [--space:calc(var(--sz-btn)/5.5)] [--gen-sz:calc(var(--space)*2)] [--sz-text:calc(var(--sz-btn)-var(--gen-sz))] h-[var(--sz-btn)] w-[var(--sz-btn)] border border-solid border-transparent rounded-xl flex items-center justify-center aspect-square cursor-pointer transition-transform duration-200 active:scale-[0.95] bg-[linear-gradient(45deg,#efad21,#ffd60f)] [box-shadow:#3c40434d_0_1px_2px_0,#3c404326_0_2px_6px_2px,#0000004d_0_30px_60px_-30px,#34343459_0_-2px_6px_0_inset]"
+    preview:
+      `<button
+      class="group relative outline-0 bg-sky-200 [--sz-btn:68px] [--space:calc(var(--sz-btn)/5.5)] [--gen-sz:calc(var(--space)*2)] [--sz-text:calc(var(--sz-btn)-var(--gen-sz))] h-[var(--sz-btn)] w-[var(--sz-btn)] border border-solid border-transparent rounded-xl flex items-center justify-center aspect-square cursor-pointer transition-transform duration-200 active:scale-[0.95] bg-[linear-gradient(45deg,#efad21,#ffd60f)] [box-shadow:#3c40434d_0_1px_2px_0,#3c404326_0_2px_6px_2px,#0000004d_0_30px_60px_-30px,#34343459_0_-2px_6px_0_inset]"
     >
       <svg
-        className="animate-pulse absolute z-10 overflow-visible transition-all duration-300 text-[#ffea50] group-hover:text-white top-[calc(var(--sz-text)/7)] left-[calc(var(--sz-text)/7)] h-[var(--gen-sz)] w-[var(--gen-sz)] group-hover:h-[var(--sz-text)] group-hover:w-[var(--sz-text)] group-hover:left-[calc(var(--sz-text)/4)] group-hover:top-[calc(calc(var(--gen-sz))/2)]"
+        class="animate-pulse absolute z-10 overflow-visible transition-all duration-300 text-[#ffea50] group-hover:text-white top-[calc(var(--sz-text)/7)] left-[calc(var(--sz-text)/7)] h-[var(--gen-sz)] w-[var(--gen-sz)] group-hover:h-[var(--sz-text)] group-hover:w-[var(--sz-text)] group-hover:left-[calc(var(--sz-text)/4)] group-hover:top-[calc(calc(var(--gen-sz))/2)]"
         stroke="none"
         viewBox="0 0 24 24"
         fill="currentColor"
@@ -105,10 +106,10 @@ const buttons = [
         ></path>
       </svg>
       <span
-        className="[font-size:var(--sz-text)] font-extrabold leading-none text-white transition-all duration-200 group-hover:opacity-0"
+        class="[font-size:var(--sz-text)] font-extrabold leading-none text-white transition-all duration-200 group-hover:opacity-0"
         >AI</span
       >
-    </button>,
+    </button>`,
     user: "TaniaDou",
     views: "17K",
     bookmarks: 95,
@@ -116,27 +117,27 @@ const buttons = [
   },
   {
     id: 5,
-    preview: /* From Uiverse.io by zymantas-katinas */ 
-    <button
-      className="relative group border-none bg-transparent p-0 outline-none cursor-pointer font-mono font-light uppercase text-base"
+    preview:
+      ` <button
+      class="relative group border-none bg-transparent p-0 outline-none cursor-pointer font-mono font-light uppercase text-base"
     >
       <span
-        className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-25 rounded-lg transform translate-y-0.5 transition duration-[600ms] ease-[cubic-bezier(0.3,0.7,0.4,1)] group-hover:translate-y-1 group-hover:duration-[250ms] group-active:translate-y-px"
+        class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-25 rounded-lg transform translate-y-0.5 transition duration-[600ms] ease-[cubic-bezier(0.3,0.7,0.4,1)] group-hover:translate-y-1 group-hover:duration-[250ms] group-active:translate-y-px"
       ></span>
     
       <span
-        className="absolute top-0 left-0 w-full h-full rounded-lg bg-gradient-to-l from-[hsl(217,33%,16%)] via-[hsl(217,33%,32%)] to-[hsl(217,33%,16%)]"
+        class="absolute top-0 left-0 w-full h-full rounded-lg bg-gradient-to-l from-[hsl(217,33%,16%)] via-[hsl(217,33%,32%)] to-[hsl(217,33%,16%)]"
       ></span>
     
       <div
-        className="relative flex items-center justify-between py-3 px-6 text-lg text-white rounded-lg transform -translate-y-1 bg-gradient-to-r from-[#f27121] via-[#e94057] to-[#8a2387] gap-3 transition duration-[600ms] ease-[cubic-bezier(0.3,0.7,0.4,1)] group-hover:-translate-y-1.5 group-hover:duration-[250ms] group-active:-translate-y-0.5 brightness-100 group-hover:brightness-110"
+        class="relative flex items-center justify-between py-3 px-6 text-lg text-white rounded-lg transform -translate-y-1 bg-gradient-to-r from-[#f27121] via-[#e94057] to-[#8a2387] gap-3 transition duration-[600ms] ease-[cubic-bezier(0.3,0.7,0.4,1)] group-hover:-translate-y-1.5 group-hover:duration-[250ms] group-active:-translate-y-0.5 brightness-100 group-hover:brightness-110"
       >
-        <span className="select-none">Start session</span>
+        <span class="select-none">Start session</span>
     
         <svg
           viewBox="0 0 20 20"
           fill="currentColor"
-          className="w-5 h-5 ml-2 -mr-1 transition duration-250 group-hover:translate-x-1"
+          class="w-5 h-5 ml-2 -mr-1 transition duration-250 group-hover:translate-x-1"
         >
           <path
             clip-rule="evenodd"
@@ -145,38 +146,7 @@ const buttons = [
           ></path>
         </svg>
       </div>
-    </button>
-     ,
-    user: "TaniaDou",
-    views: "17K",
-    bookmarks: 95,
-    comments: 0,
-  },
-  {
-    id: 5,
-    preview: /* From Uiverse.io by tirth_5172 */ 
-    <button
-      className="relative cursor-pointer py-4 px-8 text-center font-barlow inline-flex justify-center text-base uppercase text-white rounded-lg border-solid transition-transform duration-300 ease-in-out group outline-offset-4 focus:outline focus:outline-2 focus:outline-white focus:outline-offset-4 overflow-hidden"
-    >
-      <span className="relative z-20">Button</span>
-    
-      <span
-        className="absolute left-[-75%] top-0 h-full w-[50%] bg-white/20 rotate-12 z-10 blur-lg group-hover:left-[125%] transition-all duration-1000 ease-in-out"
-      ></span>
-    
-      <span
-        className="w-1/2 drop-shadow-3xl transition-all duration-300 block border-[#D4EDF9] absolute h-[20%] rounded-tl-lg border-l-2 border-t-2 top-0 left-0"
-      ></span>
-      <span
-        className="w-1/2 drop-shadow-3xl transition-all duration-300 block border-[#D4EDF9] absolute group-hover:h-[90%] h-[60%] rounded-tr-lg border-r-2 border-t-2 top-0 right-0"
-      ></span>
-      <span
-        className="w-1/2 drop-shadow-3xl transition-all duration-300 block border-[#D4EDF9] absolute h-[60%] group-hover:h-[90%] rounded-bl-lg border-l-2 border-b-2 left-0 bottom-0"
-      ></span>
-      <span
-        className="w-1/2 drop-shadow-3xl transition-all duration-300 block border-[#D4EDF9] absolute h-[20%] rounded-br-lg border-r-2 border-b-2 right-0 bottom-0"
-      ></span>
-    </button>
+    </button>`
     ,
     user: "TaniaDou",
     views: "17K",
@@ -185,12 +155,43 @@ const buttons = [
   },
   {
     id: 5,
-    preview:/* From Uiverse.io by SmookyDev */ 
-    <button
-      className="px-8 z-30 py-4 bg-rose-400 rounded-md text-white relative font-semibold after:-z-20 after:absolute after:h-1 after:w-1 after:bg-rose-800 after:left-5 overflow-hidden after:bottom-0 after:translate-y-full after:rounded-md after:hover:scale-[300] after:hover:transition-all after:hover:duration-700 after:transition-all after:duration-700 transition-all duration-700 [text-shadow:3px_5px_2px_#be123c;] hover:[text-shadow:2px_2px_2px_#fda4af] text-2xl"
+    preview: /* From Uiverse.io by tirth_5172 */
+      ` <button
+      class="relative cursor-pointer py-4 px-8 text-center font-barlow inline-flex justify-center text-base uppercase text-white rounded-lg border-solid transition-transform duration-300 ease-in-out group outline-offset-4 focus:outline focus:outline-2 focus:outline-white focus:outline-offset-4 overflow-hidden"
+    >
+      <span className="relative z-20">Button</span>
+    
+      <span
+        class="absolute left-[-75%] top-0 h-full w-[50%] bg-white/20 rotate-12 z-10 blur-lg group-hover:left-[125%] transition-all duration-1000 ease-in-out"
+      ></span>
+    
+      <span
+        class="w-1/2 drop-shadow-3xl transition-all duration-300 block border-[#D4EDF9] absolute h-[20%] rounded-tl-lg border-l-2 border-t-2 top-0 left-0"
+      ></span>
+      <span
+        class="w-1/2 drop-shadow-3xl transition-all duration-300 block border-[#D4EDF9] absolute group-hover:h-[90%] h-[60%] rounded-tr-lg border-r-2 border-t-2 top-0 right-0"
+      ></span>
+      <span
+        class="w-1/2 drop-shadow-3xl transition-all duration-300 block border-[#D4EDF9] absolute h-[60%] group-hover:h-[90%] rounded-bl-lg border-l-2 border-b-2 left-0 bottom-0"
+      ></span>
+      <span
+        class="w-1/2 drop-shadow-3xl transition-all duration-300 block border-[#D4EDF9] absolute h-[20%] rounded-br-lg border-r-2 border-b-2 right-0 bottom-0"
+      ></span>
+    </button>`
+    ,
+    user: "TaniaDou",
+    views: "17K",
+    bookmarks: 95,
+    comments: 0,
+  },
+  {
+    id: 5,
+    preview:
+      `<button
+      class="px-8 z-30 py-4 bg-rose-400 rounded-md text-white relative font-semibold after:-z-20 after:absolute after:h-1 after:w-1 after:bg-rose-800 after:left-5 overflow-hidden after:bottom-0 after:translate-y-full after:rounded-md after:hover:scale-[300] after:hover:transition-all after:hover:duration-700 after:transition-all after:duration-700 transition-all duration-700 [text-shadow:3px_5px_2px_#be123c;] hover:[text-shadow:2px_2px_2px_#fda4af] text-2xl"
     >
       Hover Me
-    </button>
+    </button>`
     ,
     user: "TaniaDou",
     views: "17K",
