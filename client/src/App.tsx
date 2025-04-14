@@ -6,6 +6,7 @@ import Elements from './pages/Elements'
 import ElementLayout from './layout/ElementLayout'
 import GetCode from './pages/GetCode'
 import { menuItems } from './utils/utils'
+import Create from './pages/Create'
 
 function App() {
   const router = createBrowserRouter([
@@ -27,6 +28,10 @@ function App() {
             },
           ]
         },
+        {
+          path: "/create",
+          element : <Create />
+        }
       ],
     },
    
