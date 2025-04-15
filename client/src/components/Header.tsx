@@ -19,10 +19,10 @@ const Header: React.FC = () => {
         </nav>
       </div>
       <div className="flex items-center space-x-4">
-        <button className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-purple-500 to-indigo-500 text-white font-medium rounded-md hover:opacity-90 transition">
+        <Link to="/create" className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-purple-500 to-indigo-500 text-white font-medium rounded-md hover:opacity-90 transition">
           <FaPlus className="text-sm" />
           <span>Create</span>
-        </button>
+        </Link>
         <button className="flex items-center space-x-2 px-4 py-2 bg-[#1F1F1F] text-white font-medium rounded-md hover:bg-[#2a2a2a] transition">
           <FaRocket className="text-sm" />
           <span>Join the Community</span>
