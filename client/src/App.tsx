@@ -7,37 +7,40 @@ import ElementLayout from './layout/ElementLayout'
 import GetCode from './pages/GetCode'
 import { menuItems } from './utils/utils'
 import Create from './pages/Create'
+import {UserContextProvider} from './context/userContext';
 
 function App() {
   const router = createBrowserRouter([
     {
-      path : "",
-      element : <RootLayout />,
-      children : [
+      path: "",
+      element: <RootLayout />,
+      children: [
         {
-          path : "/",
+          path: "/",
           element: <Home />
         },
         {
-          path : "",
-          element : <ElementLayout />,
-          children : [ ...menuItems.map((item) => ({path : item.route, element :<Elements />})), 
-            {
-              path : "/:username/:elementId",
-              element : <GetCode />
-            },
+          path: "",
+          element: <ElementLayout />,
+          children: [...menuItems.map((item) => ({ path: item.route, element: <Elements /> })),
+          {
+            path: "/:username/:elementId",
+            element: <GetCode />
+          },
           ]
         },
         {
           path: "/create",
-          element : <Create />
+          element: <Create />
         }
       ],
     },
-   
+
   ])
   return (
-    <RouterProvider router={router} />
+    <UserContextProvider>
+      <RouterProvider router={router} />
+    </UserContextProvider>
   )
 }
 
