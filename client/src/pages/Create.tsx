@@ -56,7 +56,7 @@ type DataType = {
   css?: string,         // Only for custom CSS (optional)
   preview: string,      // Rendered preview in iframe
   bgColor: string,      // Preview background
-  createdAt: Date
+  createdAt: number
 }
 
 const Create: React.FC = () => {
@@ -72,18 +72,16 @@ const Create: React.FC = () => {
     name: "",
     type: "button",         // 'button', 'toggle', etc.
     framework: "css",    // 'tailwind' | 'css'
-    html: "",
-    css : "",         // Raw HTML code  
+    html: `<button class="button">Button</button>`,
+    css: ".button { color : red }",         // Raw HTML code  
     preview: "",      // Rendered preview in iframe
     bgColor,      // Preview background
-    createdAt: Date
+    createdAt: Date.now()
   })
 
   const handleSubmit = (): void => {
     console.log(formData);
   }
-
-
 
   return (
     <div className="min-h-screen p-6 bg-[#111]">
@@ -96,10 +94,11 @@ const Create: React.FC = () => {
             className="w-full h-[calc(100vh-160px)]"
             srcDoc={`<html>
                 <head>
-                  <script src="https://cdn.tailwindcss.com"></script>
-                  <style>html, body { height: 100%; margin: 0; display: flex; align-items: center; justify-content: center;}
-                  ${formData.css}
-                  </style>
+                   ${formData.framework === "tailwindcss" ? '<script src="https://cdn.tailwindcss.com"></script>' : ''}
+                      <style>
+                        html, body { height: 100%; margin: 0; display: flex; align-items: center; justify-content: center; }
+                        ${formData.framework === "css" ? formData.css : ''}
+                      </style>
                 </head>
                 <body>${code}</body>
               </html>`}
@@ -120,16 +119,21 @@ const Create: React.FC = () => {
         <div className="flex flex-col bg-[#1e1e1e]">
           {/* Editor Header */}
           <div className="flex justify-between items-center bg-[#292929] px-4 pt-2.5 text-sm font-medium">
-            <div className="flex items-center gap-1">
-              <button onClick={() => setCurrentTab("html")} className="px-2 py-1.5 w-40 text-left rounded-t-md bg-[#1E1E1E]">HTML</button>
-              <button onClick={() => setCurrentTab("css")} className="px-2 py-1.5 w-40 text-left rounded-t-md bg-[#171717]">CSS</button>
-            </div>
+            {formData.framework == "css" ?
+              <div className="flex items-center gap-1">
+                <button onClick={() => setCurrentTab("html")} className={`px-2 py-1.5 w-40 text-left rounded-t-md flex items-center gap-1 ${currentTab === "html" ? "bg-[#1E1E1E]" : "bg-[#171717]"}`}><img src="https://img.icons8.com/color/200/html-5.png" alt="html icon" className="w-5" /> HTML</button>
+                <button onClick={() => setCurrentTab("css")} className={`px-2 py-1.5 w-40 text-left rounded-t-md bg-[#171717] flex items-center gap-1 ${currentTab == "css" ? "bg-[#1E1E1E]" : "bg-[#171717]"}`}> <img src="https://img.icons8.com/fluent/512/css3.png" alt="css icon" className="w-5" />CSS</button>
+              </div> :
+              <div>
+                <button className="px-2 py-1.5 w-60 text-left rounded-t-md bg-[#1E1E1E] flex items-center gap-2"><img src="https://img.icons8.com/color/200/html-5.png" alt="html icon" className="w-5" /> HTML  +  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/1200px-Tailwind_CSS_Logo.svg.png" alt="" className="w-5" /> TailwindCSS</button>
+              </div>
+            }
             <FaRegCopy className="text-gray-400 cursor-pointer" />
           </div>
 
           {/* Monaco Editor */}
           <div className="flex-1">
-            {currentTab === "html" ? <Editor
+            {/* {currentTab === "html" ? <Editor
               height="100%"
               language="html"
               theme="vs-dark"
@@ -157,7 +161,22 @@ const Create: React.FC = () => {
                   scrollbar: { vertical: "hidden", horizontal: "hidden" },
                 }}
               />
-            }
+            } */}
+
+            {<Editor
+              height="100%"
+              language={currentTab == "css" ? "css" : "html"}
+              theme="vs-dark"
+              value={currentTab == "css" ? formData.css : formData.html}
+              onChange={(value) => setCode(value ?? "")}
+              options={{
+                fontSize: 14,
+                minimap: { enabled: false },
+                wordWrap: "on",
+                tabSize: 2,
+                scrollbar: { vertical: "hidden", horizontal: "hidden" },
+              }}
+            />}
           </div>
         </div>
       </div>
