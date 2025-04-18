@@ -13,7 +13,7 @@ const RootLayout: React.FC = () => {
             <Outlet />
             {/* <Footer /> */}
 
-            {showSigninModal && <SignupModal showSigninModal={showSigninModal} setShowSigninModal={setShowSigninModal} />}
+            {showSigninModal && <SignupModal setShowSigninModal={setShowSigninModal} />}
         </div>
     )
 }

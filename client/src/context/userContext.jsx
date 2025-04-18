@@ -8,7 +8,6 @@ const UserContextProvider = ({ children }) => {
     const [notification, setNotification] = useState(null);
     const [showSigninModal,setShowSigninModal] = useState(true)
 
-
     return (
         <UserContext.Provider value={{ user, setUser, notification, setNotification,showSigninModal,setShowSigninModal}}>
             {children}

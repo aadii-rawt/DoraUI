@@ -6,6 +6,7 @@ import { RiToggleLine } from "react-icons/ri";
 import { IoMdCheckboxOutline, IoMdSwitch } from "react-icons/io";
 import { FiLoader } from "react-icons/fi";
 import { IoDocumentOutline } from "react-icons/io5";
+import axios from "axios";
 
 type TypeElement = {
   name: string,
@@ -79,9 +80,24 @@ const Create: React.FC = () => {
     createdAt: Date.now()
   })
 
-  const handleSubmit = (): void => {
+  const handleSubmit = async (): Promise<void> => {
     console.log(formData);
-  }
+
+    try {
+      const payload = {
+        ...formData,
+      };
+
+      const response = await axios.post("http://localhost:3000/api/v1/components", payload);
+
+      console.log("Component saved:", response.data);
+      alert("Component submitted successfully!");
+    } catch (error: any) {
+      console.error("Submission error:", error?.response?.data || error.message);
+      alert("Failed to submit the component!");
+    }
+  };
+
 
   return (
     <div className="min-h-screen p-6 bg-[#111]">
@@ -100,7 +116,7 @@ const Create: React.FC = () => {
                         ${formData.framework === "css" ? formData.css : ''}
                       </style>
                 </head>
-                <body>${code}</body>
+                <body>${formData.html}</body>
               </html>`}
           />
 
@@ -168,7 +184,8 @@ const Create: React.FC = () => {
               language={currentTab == "css" ? "css" : "html"}
               theme="vs-dark"
               value={currentTab == "css" ? formData.css : formData.html}
-              onChange={(value) => setCode(value ?? "")}
+              // onChange={(value) => setCode(value ?? "")}
+              onChange={(value) => setFormdata((prev) => ({ ...prev, [currentTab]: value }))}
               options={{
                 fontSize: 14,
                 minimap: { enabled: false },
