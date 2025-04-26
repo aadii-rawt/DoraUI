@@ -50,13 +50,13 @@ const elementsTypes: TypeElement[] = [
 
 type DataType = {
   id: string,
-  name: string,         // Button, Toggle, etc.
-  type: string,         // 'button', 'toggle', etc.
-  framework?: string,    // 'tailwind' | 'css'
-  html: string,         // Raw HTML code
-  css?: string,         // Only for custom CSS (optional)
-  preview: string,      // Rendered preview in iframe
-  bgColor: string,      // Preview background
+  name: string,         
+  type: string,         
+  framework?: string,    
+  html: string,         
+  css?: string,         
+  preview: string,  
+  bgColor: string, 
   createdAt: number
 }
 
