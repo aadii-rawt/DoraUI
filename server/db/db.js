@@ -11,9 +11,6 @@ const UserSchema = new mongoose.Schema({
     twitterId : String,
 
     bio : String,
-    // savedComponents: {}
-
-
 },{timestamps  : true})
 
 
@@ -30,8 +27,8 @@ const ComponentSchema = new mongoose.Schema({
 })
 
 
-const Users = mongoose.model("Users", UserSchema);
+const User = mongoose.model("Users", UserSchema);
 const Components = mongoose.model("Components",ComponentSchema);
 
 
-module.exports = {Users,Components}
+module.exports = {User,Components}

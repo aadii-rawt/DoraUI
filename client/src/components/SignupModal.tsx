@@ -4,12 +4,17 @@ import { FcGoogle } from "react-icons/fc";
 import { FaXTwitter } from "react-icons/fa6";
 import { createPortal } from "react-dom";
 import { RxCross2 } from "react-icons/rx";
+import axios from "axios";
 
 type PropType = {
   setShowSigninModal : React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const SignupModal : React.FC<PropType> = ({setShowSigninModal }) => {
+
+  const handleGoogleAuth = async ()  => {
+    window.open("http://localhost:3000/api/auth/google", "_self")
+  }
 
   return createPortal(
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60" onClick={() => setShowSigninModal(false)}>
@@ -44,14 +49,14 @@ const SignupModal : React.FC<PropType> = ({setShowSigninModal }) => {
 
         {/* Auth Buttons */}
         <div className="space-y-3">
-          <button className="w-full flex items-center justify-center gap-2 bg-secondary px-4 py-2.5 rounded-md text-white  font-medium transition">
+          <button className="w-full flex items-center justify-center gap-2 bg-secondary px-4 py-2.5 rounded-md text-white font-medium transition">
             <FaGithub /> Continue with GitHub
           </button>
-          <button className="w-full flex items-center justify-center gap-2 bg-secondary px-4 py-2.5 rounded-md text-white  font-medium transition">
+          <button onClick={handleGoogleAuth} className="w-full flex items-center justify-center gap-2 bg-secondary px-4 py-2.5 rounded-md text-white font-medium transition">
             <FcGoogle /> Continue with Google
           </button>
-          <button className="w-full flex items-center justify-center gap-2 bg-secondary px-4 py-2.5 rounded-md text-white  font-medium transition">
-            <FaXTwitter /> Continue with X
+          <button className="w-full flex items-center justify-center gap-2 bg-secondary px-4 py-2.5 rounded-md text-white font-medium transition">
+            Continue with  <FaXTwitter />
           </button>
         </div>
 

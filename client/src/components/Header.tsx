@@ -1,8 +1,10 @@
 import React from "react";
 import { FaRocket, FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import userContext from "../context/userContext";
 
 const Header: React.FC = () => {
+  const { showSigninModal, setShowSigninModal } = userContext()
   return (
     <header className="w-full px-6 py-4 flex justify-between items-center bg-primary">
       <div className="flex items-center space-x-8">
@@ -23,7 +25,7 @@ const Header: React.FC = () => {
           <FaPlus className="text-sm" />
           <span>Create</span>
         </Link>
-        <button className="flex items-center space-x-2 px-4 py-2 bg-[#1F1F1F] text-white font-medium rounded-md hover:bg-[#2a2a2a] transition">
+        <button onClick={() => setShowSigninModal(true)} className="flex items-center space-x-2 px-4 py-2 bg-[#1F1F1F] text-white font-medium rounded-md hover:bg-[#2a2a2a] transition">
           <FaRocket className="text-sm" />
           <span>Join the Community</span>
         </button>
