@@ -1,18 +1,15 @@
 const express = require("express")
+const session = require("express-session");
 const bodyParser = require("body-parser")
 const app = express()
 const cors = require("cors")
 const mongoose = require("mongoose")
 require("dotenv").config()
-const session = require("cookie-session");
 const passport = require("passport");
 // require("./src/passportSetup"); 
 
 app.use(express.json())
 app.use(bodyParser.json())
-app.use(passport.initialize());
-app.use(passport.session());
-
 
 // mongoose.connect(process.env.DB_CONNECTION); // connect to the database
 
@@ -24,10 +21,19 @@ app.use(
 )
 app.use(
     session({
-        maxAge: 24 * 60 * 60 * 1000,
-        keys: ["yourSecretKey"],
+        secret: process.env.SESSION_SECRET, // Use env variable in production
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+          secure: false, // true in production with HTTPS
+          httpOnly: true,
+          maxAge: 1000 * 60 * 60 * 24, // 1 day
+        },
     })
 );
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 const elements = require("./routes/elements")
