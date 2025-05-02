@@ -13,7 +13,8 @@ type PropType = {
 const SignupModal : React.FC<PropType> = ({setShowSigninModal }) => {
 
   const handleGoogleAuth = async ()  => {
-    window.open("http://localhost:3000/api/auth/google", "_self")
+    // window.open("http://localhost:3000/api/auth/google", "_self")
+    window.open("http://localhost:5000/api/auth/google", "_self")
   }
 
   return createPortal(
