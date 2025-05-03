@@ -7,12 +7,13 @@ const cors = require("cors")
 const mongoose = require("mongoose")
 require("dotenv").config()
 const passport = require("passport");
-// require("./src/passportSetup"); 
 
 app.use(express.json())
 app.use(bodyParser.json())
 
-// mongoose.connect(process.env.DB_CONNECTION); // connect to the database
+mongoose.connect(process.env.DB_CONNECTION).then(() => {
+  console.log("Database connected...");
+})
 
 app.use(
     cors({
@@ -27,10 +28,13 @@ app.use(
       resave: false,
       saveUninitialized: true,
     })
-  );
+);
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+
+
 
 
 const elements = require("./routes/elements")

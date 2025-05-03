@@ -10,9 +10,10 @@ passport.use(
             callbackURL: "/auth/google/callback"
         },
         async (accessToken, refreshToken, profile, done) => {
+            console.log("user profile: ", profile);
+            
             // const existingUser = await User.findOne({ googleId: profile.id });
             // if (existingUser) return done(null, existingUser);
-
             // const newUser = await User.create({
             //     googleId: profile.id,
             //     name: profile.displayName,
