@@ -2,6 +2,7 @@ import React from "react";
 import { FaRocket, FaPlus } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import userContext from "../context/userContext";
+import ProfileDropDown from "./UI/ProfileDropDown";
 
 const Header: React.FC = () => {
   const { showSigninModal, setShowSigninModal, user } = userContext()
@@ -35,11 +36,13 @@ const Header: React.FC = () => {
           <FaPlus className="text-sm" />
           <span>Create</span>
         </button>
-        {!user &&
-        <button onClick={() => setShowSigninModal(true)} className="flex items-center space-x-2 px-4 py-2 bg-[#1F1F1F] text-white font-medium rounded-md hover:bg-[#2a2a2a] transition">
-          <FaRocket className="text-sm" />
-          <span>Join the Community</span>
-        </button>}
+        {user ?
+          <ProfileDropDown /> :
+          <button onClick={() => setShowSigninModal(true)} className="flex items-center space-x-2 px-4 py-2 bg-[#1F1F1F] text-white font-medium rounded-md hover:bg-[#2a2a2a] transition">
+            <FaRocket className="text-sm" />
+            <span>Join the Community</span>
+          </button>
+        }
       </div>
     </header>
   );

@@ -4,7 +4,7 @@ const UserContext = createContext();
 
 const UserContextProvider = ({ children }) => {
     const [user, setUser] = useState({
-        name: "Aditya Rawat",
+        name: "Aditya",
         email: "adi@g.com",
         avatar : "",
 
