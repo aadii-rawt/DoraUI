@@ -19,9 +19,9 @@ const Header: React.FC = () => {
   return (
     <header className="w-full px-6 py-4 flex justify-between items-center bg-primary">
       <div className="flex items-center space-x-8">
-        <h1 className="text-white font-bold text-2xl">
+        <Link to="/" className="text-white font-bold text-2xl">
           Dora<span className="text-[#7C3AED]">UI</span>
-        </h1>
+        </Link>
         <nav className="flex items-center space-x-6 text-white font-medium">
           <Link to='/elements' className="relative group">
             <button className="bg-[#1F1F1F] px-4 py-2 rounded-md">Elements ▾</button>

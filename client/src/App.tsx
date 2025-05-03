@@ -7,7 +7,8 @@ import ElementLayout from './layout/ElementLayout'
 import GetCode from './pages/GetCode'
 import { menuItems } from './utils/utils'
 import Create from './pages/Create'
-import {UserContextProvider} from './context/userContext';
+import { UserContextProvider } from './context/userContext';
+import Profile from './pages/Porfile'
 
 function App() {
   const router = createBrowserRouter([
@@ -27,6 +28,10 @@ function App() {
             path: "/:username/:elementId",
             element: <GetCode />
           },
+          {
+            path: "/profile",
+            element: <Profile />
+          }
           ]
         },
         {

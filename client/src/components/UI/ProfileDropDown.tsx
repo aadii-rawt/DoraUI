@@ -8,31 +8,32 @@ import { LuUser } from 'react-icons/lu';
 import { IoBookmarkOutline } from 'react-icons/io5';
 import { GoGear } from 'react-icons/go';
 import { FiLogOut } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 const items: MenuProps['items'] = [
     {
         label: (
-            <a href="https://www.antgroup.com" className='flex
-            gap-3 items-center' target="_blank" rel="noopener noreferrer">
+            <Link to="/profile" className='flex
+            gap-3 items-center' >
              <LuUser size={18}/>   Your Profile
-            </a>
+            </Link>
         ),
         key: '0',
     },
     {
         label: (
-            <a href="https://www.aliyun.com" target="_blank" rel="noopener noreferrer" className='flex
+            <Link to="/profile" rel="noopener noreferrer" className='flex
             gap-3 items-center'>
               <IoBookmarkOutline  size={18}/>  Your Fevourite
-            </a>
+            </Link>
         ),
         key: '1',
     },
     {
         label: (
-            <a href="https://www.aliyun.com" target="_blank" rel="noopener noreferrer" className='flex
+            <Link to="/setting" rel="noopener noreferrer" className='flex
             gap-3 items-center'>
              <GoGear size={18} />   Setting
-            </a>
+            </Link>
         ),
         key: '2',
     },
