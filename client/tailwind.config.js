@@ -11,7 +11,7 @@ export default {
         secondary: "#292929",
         third : "#1F1F1F",
         gray3rd : "#212121",
-
+        theme : "#7C3AED",
       }
     },
   },
