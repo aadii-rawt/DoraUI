@@ -11,7 +11,7 @@ const RootLayout: React.FC = () => {
         <div className='bg-primary text-white w-full min-h-screen'>
             <Header />
             <Outlet />
-            {/* <Footer /> */}
+            <Footer />
 
             {showSigninModal && <SignupModal setShowSigninModal={setShowSigninModal} />}
         </div>

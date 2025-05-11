@@ -9,6 +9,8 @@ import { menuItems } from './utils/utils'
 import Create from './pages/Create'
 import { UserContextProvider } from './context/userContext';
 import Profile from './pages/Porfile'
+import SettingLayout from './layout/SettingLayout'
+import { ProfileSetting } from './pages/settings/ProfileSetting'
 
 function App() {
   const router = createBrowserRouter([
@@ -37,6 +39,16 @@ function App() {
         {
           path: "/create",
           element: <Create />
+        },
+        {
+          path : "",
+          element : <SettingLayout />,
+          children : [
+            {
+              path : "/setting/profile",
+              element : <ProfileSetting />
+            }
+          ]
         }
       ],
     },

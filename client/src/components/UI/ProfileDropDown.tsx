@@ -30,7 +30,7 @@ const items: MenuProps['items'] = [
     },
     {
         label: (
-            <Link to="/setting" rel="noopener noreferrer" className='flex
+            <Link to="/setting/profile" className='flex
             gap-3 items-center'>
              <GoGear size={18} />   Setting
             </Link>
@@ -42,7 +42,7 @@ const items: MenuProps['items'] = [
     },
     {
         label: (
-            <button rel="noopener noreferrer" className='flex
+            <button className='flex
             gap-3 items-center text-red-500'>
                <FiLogOut size={18} /> Logout
             </button>
@@ -55,7 +55,7 @@ const ProfileDropDown: React.FC = () => {
     const { user } = userContext()
     return (
         <ConfigProvider theme={{ algorithm: theme.darkAlgorithm }}>
-            <Dropdown className='cursor-pointer hover:bg-secondary bg-secondary py-1 px-1 pl-3 rounded-lg' menu={{ items }} trigger={['click']} >
+            <Dropdown className='cursor-pointer hover:bg-secondary py-1 px-1 pl-3 rounded-lg' menu={{ items }} trigger={['click']} >
                 <a onClick={(e) => e.preventDefault()}>
                     <Space>
                         <IoIosArrowDown />
