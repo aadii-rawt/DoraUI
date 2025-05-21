@@ -68,7 +68,7 @@ const Hero : React.FC = () => {
 
             {/* Search bar */}
             <div className="mt-10 flex justify-center">
-                <div className="flex items-center hover:scale-110 transition-transform bg-zinc-800 rounded-xl pl-4 pr-2 py-3 w-full max-w-lg">
+                <div className="flex items-center hover:scale-110 transition-transform bg-white rounded-xl pl-4 pr-2 py-3 w-full max-w-lg">
                     <svg
                         className="w-5 h-5 text-gray-400 mr-2"
                         fill="none"
@@ -86,7 +86,7 @@ const Hero : React.FC = () => {
                     <input
                         type="text"
                         placeholder="Search for components, styles, creators..."
-                        className="bg-transparent outline-none text-sm text-gray-300 flex-1"
+                        className="bg-white outline-none text-sm text-black flex-1"
                     />
                     <button className="ml-4 px-4 py-2 bg-indigo-500 text-white rounded-lg text-sm font-medium hover:bg-indigo-600 transition-all">
                         Search

@@ -7,25 +7,29 @@ import { RxCross2 } from "react-icons/rx";
 import axios from "axios";
 
 type PropType = {
-  setShowSigninModal : React.Dispatch<React.SetStateAction<boolean>>
+  setShowSigninModal: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const SignupModal : React.FC<PropType> = ({setShowSigninModal }) => {
+const SignupModal: React.FC<PropType> = ({ setShowSigninModal }) => {
 
-  const handleGoogleAuth = async ()  => {
-    // window.open("http://localhost:3000/api/auth/google", "_self")
-    window.open("http://localhost:5000/api/auth/google", "_self")
+  const handleGoogleAuth = async () => {
+    window.location.href = 'http://localhost:5000/auth/google';
   }
+
+  const handleGithubLogin = () => {
+    window.location.href = 'http://localhost:5000/auth/github';
+  };
+
 
   return createPortal(
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60" onClick={() => setShowSigninModal(false)}>
-      <div   onClick={(e) => e.stopPropagation()} className="bg-gradient-to-br from-[#1f1c3d] to-[#0d1117] rounded-2xl shadow-xl relative w-full max-w-xl px-20 py-8 overflow-hidden text-white">
+      <div onClick={(e) => e.stopPropagation()} className="bg-gradient-to-br from-[#1f1c3d] to-[#0d1117] rounded-2xl shadow-xl relative w-full max-w-xl px-20 py-8 overflow-hidden text-white">
         {/* Close Button */}
         <button
           onClick={() => setShowSigninModal(false)}
           className="absolute top-5 right-4 text-white text-xl"
         >
-         <RxCross2 />
+          <RxCross2 />
         </button>
 
         {/* Astro Icon */}
@@ -50,7 +54,7 @@ const SignupModal : React.FC<PropType> = ({setShowSigninModal }) => {
 
         {/* Auth Buttons */}
         <div className="space-y-3">
-          <button className="w-full flex items-center justify-center gap-2 bg-secondary px-4 py-2.5 rounded-md text-white font-medium transition">
+          <button onClick={handleGithubLogin} className="w-full flex items-center justify-center gap-2 bg-secondary px-4 py-2.5 rounded-md text-white font-medium transition">
             <FaGithub /> Continue with GitHub
           </button>
           <button onClick={handleGoogleAuth} className="w-full flex items-center justify-center gap-2 bg-secondary px-4 py-2.5 rounded-md text-white font-medium transition">

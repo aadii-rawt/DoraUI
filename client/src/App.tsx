@@ -11,7 +11,7 @@ import { UserContextProvider } from './context/userContext';
 import Profile from './pages/Porfile'
 import SettingLayout from './layout/SettingLayout'
 import { ProfileSetting } from './pages/settings/ProfileSetting'
-
+import EmailSetting from './pages/settings/EmailSetting'
 function App() {
   const router = createBrowserRouter([
     {
@@ -47,7 +47,11 @@ function App() {
             {
               path : "/setting/profile",
               element : <ProfileSetting />
-            }
+            },
+            {
+              path : "/setting/email",
+              element : <EmailSetting />
+            },
           ]
         }
       ],

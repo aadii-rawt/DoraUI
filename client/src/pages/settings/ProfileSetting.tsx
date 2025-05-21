@@ -6,7 +6,7 @@ import { RiBuilding2Line, RiLinkM } from 'react-icons/ri'
 
 export const ProfileSetting  : React.FC = () => {
   return (
-    <div className=' w-full'>
+    <div className='w-full'>
       <h1 className='text-3xl font-semibold'>Personal Information</h1>
       <p className='text-gray-400 my-2'>This information will be displayed publicly on your profile.</p>
 

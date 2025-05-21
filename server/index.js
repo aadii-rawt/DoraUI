@@ -41,7 +41,7 @@ const elements = require("./routes/elements")
 const auth = require("./routes/auth")
 
 app.use("/api/v1/components", elements)
-app.use("/api/auth", auth)
+app.use(auth)
 
 
 const PORT = process.env.PORT || 5000
