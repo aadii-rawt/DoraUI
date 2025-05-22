@@ -5,7 +5,7 @@ import userContext from "../context/userContext";
 import ProfileDropDown from "./UI/ProfileDropDown";
 
 const Header: React.FC = () => {
-  const { showSigninModal, setShowSigninModal, user } = userContext()
+  const { showSigninModal, setShowSigninModal, user, setUser } = userContext()
 
   const navigate = useNavigate()
 
@@ -16,6 +16,8 @@ const Header: React.FC = () => {
     }
     navigate("/create")
   }
+
+
   return (
     <header className="w-full px-6 py-4 flex justify-between items-center bg-primary">
       <div className="flex items-center space-x-8">

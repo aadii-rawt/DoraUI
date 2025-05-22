@@ -1,17 +1,6 @@
 const mongoose = require("mongoose")
 
 
-// const UserSchema = new mongoose.Schema({
-//     name : String,
-//     email : {type: String, require : true, unique : true},
-//     avatar : String,
-    
-//     googleId : String,
-//     githubId: String,
-//     twitterId : String,
-
-//     bio : String,
-// },{timestamps  : true})
 
 const UserSchema = new mongoose.Schema({
   provider: {
@@ -37,7 +26,7 @@ const UserSchema = new mongoose.Schema({
   displayName: {
     type: String
   },
-  profileImage: {
+  avatar: {
     type: String
   },
   bio: {

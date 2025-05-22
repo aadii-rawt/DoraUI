@@ -9,12 +9,29 @@ import { IoBookmarkOutline } from 'react-icons/io5';
 import { GoGear } from 'react-icons/go';
 import { FiLogOut } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-const items: MenuProps['items'] = [
+import axios from 'axios';
+
+
+const ProfileDropDown: React.FC = () => {
+    const { user, setUser } = userContext()
+
+    const logout = async () => {
+        try {
+            await axios.get("http://localhost:5000/auth/logout", {
+                withCredentials: true,
+            });
+            setUser(null); // clear user from context
+        } catch (err) {
+            console.error("Logout failed", err);
+        }
+    };
+
+    const items: MenuProps['items'] = [
     {
         label: (
             <Link to="/profile" className='flex
             gap-3 items-center' >
-             <LuUser size={18}/>   Your Profile
+                <LuUser size={18} />   Your Profile
             </Link>
         ),
         key: '0',
@@ -23,7 +40,7 @@ const items: MenuProps['items'] = [
         label: (
             <Link to="/profile" rel="noopener noreferrer" className='flex
             gap-3 items-center'>
-              <IoBookmarkOutline  size={18}/>  Your Fevourite
+                <IoBookmarkOutline size={18} />  Your Fevourite
             </Link>
         ),
         key: '1',
@@ -32,7 +49,7 @@ const items: MenuProps['items'] = [
         label: (
             <Link to="/setting/profile" className='flex
             gap-3 items-center'>
-             <GoGear size={18} />   Setting
+                <GoGear size={18} />   Setting
             </Link>
         ),
         key: '2',
@@ -43,16 +60,14 @@ const items: MenuProps['items'] = [
     {
         label: (
             <button className='flex
-            gap-3 items-center text-red-500'>
-               <FiLogOut size={18} /> Logout
+            gap-3 items-center text-red-500' onClick={logout}>
+                <FiLogOut size={18} /> Logout
             </button>
         ),
         key: '3',
     },
 ];
 
-const ProfileDropDown: React.FC = () => {
-    const { user } = userContext()
     return (
         <ConfigProvider theme={{ algorithm: theme.darkAlgorithm }}>
             <Dropdown className='cursor-pointer hover:bg-secondary py-1 px-1 pl-3 rounded-lg' menu={{ items }} trigger={['click']} >

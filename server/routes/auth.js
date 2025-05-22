@@ -52,7 +52,7 @@ passport.use(new GoogleStrategy({
         email: email,
         username: profile.displayName?.replace(/\s+/g, '').toLowerCase(), // or generate unique
         displayName: profile.displayName,
-        profileImage: profile.photos?.[0]?.value
+        avatar: profile.photos?.[0]?.value
       });
 
       return done(null, newUser);
@@ -70,7 +70,6 @@ passport.use(new GitHubStrategy({
   callbackURL: process.env.GITHUB_CALLBACK_URL
 },
   async (accessToken, refreshToken, profile, done) => {
-    console.log(profile);
     try {
       const email = profile.emails?.[0]?.value;
       const githubId = profile.id;
@@ -78,6 +77,9 @@ passport.use(new GitHubStrategy({
       if (user) {
         return done(null, user);
       }
+      console.log(profile);
+      
+
 
       if (email) {
         user = await User.findOne({ email });
@@ -85,7 +87,7 @@ passport.use(new GitHubStrategy({
           user.provider = 'github'; // Optional if you want to store latest used provider
           user.providerId = githubId;
           user.username = user.username || profile.username;
-          user.profileImage = user.profileImage || profile.photos?.[0]?.value;
+          user.avatar = user.avatar || profile.avatar_url;
           await user.save();
           return done(null, user);
         }
@@ -98,8 +100,11 @@ passport.use(new GitHubStrategy({
         email: email,
         username: profile.username,
         displayName: profile.displayName,
-        profileImage: profile.photos?.[0]?.value
+        avatar: profile.avatar_url
       });
+
+      console.log(user);
+      
 
       return done(null, user);
     } catch (err) {
@@ -164,11 +169,9 @@ router.get("/auth/google/callback",
     const token = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '7d' });
     res.cookie('token', token, {
       httpOnly: true,
-      // secure: process.env.NODE_ENV === 'production',
-      // sameSite: 'Lax',
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
-    res.redirect("http://localhost:5173/elements"); // or your dashboard route
+    res.redirect("http://localhost:5173/elements"); 
   }
 );
 
@@ -182,7 +185,13 @@ router.get('/auth/github/callback',
     session: true
   }),
   (req, res) => {
-    res.redirect('http://localhost:5173/'); // Or your frontend route
+    const user = req.user
+    const token = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '7d' });
+    res.cookie('token', token, {
+      httpOnly: true,
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    });
+    res.redirect('http://localhost:5173/'); 
   }
 );
 
@@ -200,26 +209,34 @@ router.get('/auth/twitter/callback',
   }
 );
 
-
-router.get("/auth/me",authMiddleware, async (req, res) => {
+router.get("/auth/me", authMiddleware, async (req, res) => {
   try {
     const token = req.cookies.token;
-    
+
     if (!token) return res.status(401).json({ message: "Not logged in" });
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     console.log(decoded);
-    
+
 
     const user = await User.findById(decoded.id);
 
     if (!user) return res.status(404).json({ message: "User not found" });
 
-    res.json(user); 
+    res.json(user);
   } catch (err) {
     console.error("Auth check failed:", err);
     res.status(401).json({ message: "Invalid token" });
   }
+});
+
+router.get("/auth/logout", (req, res) => {
+  res.clearCookie("token", {
+    httpOnly: true,
+    sameSite: "Lax",
+  });
+
+  res.json({ message: "Logged out successfully" });
 });
 
 
