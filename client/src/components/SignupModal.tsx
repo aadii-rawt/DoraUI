@@ -19,6 +19,9 @@ const SignupModal: React.FC<PropType> = ({ setShowSigninModal }) => {
   const handleGithubLogin = () => {
     window.location.href = 'http://localhost:5000/auth/github';
   };
+  const handleXAuth = () => {
+    window.location.href = 'http://localhost:5000/auth/twitter';
+  };
 
 
   return createPortal(
@@ -60,7 +63,7 @@ const SignupModal: React.FC<PropType> = ({ setShowSigninModal }) => {
           <button onClick={handleGoogleAuth} className="w-full flex items-center justify-center gap-2 bg-secondary px-4 py-2.5 rounded-md text-white font-medium transition">
             <FcGoogle /> Continue with Google
           </button>
-          <button className="w-full flex items-center justify-center gap-2 bg-secondary px-4 py-2.5 rounded-md text-white font-medium transition">
+          <button onClick={handleXAuth} className="w-full flex items-center justify-center gap-2 bg-secondary px-4 py-2.5 rounded-md text-white font-medium transition">
             Continue with  <FaXTwitter />
           </button>
         </div>

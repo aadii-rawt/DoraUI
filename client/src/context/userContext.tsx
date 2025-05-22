@@ -1,4 +1,6 @@
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import api from '../axios';
+import axios from 'axios';
 
 // Define the shape of the context value
 interface User {
@@ -28,6 +30,24 @@ const UserContextProvider = ({ children }: ProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
   const [notification, setNotification] = useState<string | null>(null);
   const [showSigninModal, setShowSigninModal] = useState(false);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/auth/me", {
+          withCredentials: true, // ✅ Required to send cookies
+        });
+
+        console.log("user :", res.data);
+        setUser(res.data);
+      } catch (err) {
+        console.log("User not logged in");
+        setUser(null);
+      }
+    };
+
+    fetchUser();
+  }, []);
 
   return (
     <UserContext.Provider

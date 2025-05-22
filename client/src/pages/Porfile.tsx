@@ -8,6 +8,7 @@ import {
 } from "@ant-design/icons";
 import { GoCopy } from "react-icons/go";
 import EmptyData from "../components/UI/EmptyData";
+import userContext from "../context/userContext";
 
 const tabs = [
   { label: "Posts", active: true },
@@ -18,17 +19,18 @@ const tabs = [
 ];
 
 const Profile: React.FC = () => {
+  const {user} = userContext()
   return (
     <div className=" text-white p-6 w-full">
       <div className="flex items-center gap-4">
         <img
-          src="https://i.pinimg.com/564x/c0/c0/f3/c0c0f3824805ad8075e555b41aeda59e.jpg"
+          src={user?.avatar || "https://i.pinimg.com/564x/c0/c0/f3/c0c0f3824805ad8075e555b41aeda59e.jpg"}
           alt="Profile"
           className="w-24 h-24 rounded-lg"
         />
         <div>
-          <h1 className="text-2xl font-bold">Aditya Rawat</h1>
-          <p className="text-gray-400">aditya_8270</p>
+          <h1 className="text-2xl font-bold">{user?.displayName}</h1>
+          <p className="text-gray-400">{user?.username}</p>
         </div>
       </div>
 

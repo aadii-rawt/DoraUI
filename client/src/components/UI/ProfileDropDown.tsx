@@ -59,7 +59,7 @@ const ProfileDropDown: React.FC = () => {
                 <a onClick={(e) => e.preventDefault()}>
                     <Space>
                         <IoIosArrowDown />
-                        <p>{user.name}</p>
+                        <p>{user?.username}</p>
                         <img src="https://i.pinimg.com/564x/c0/c0/f3/c0c0f3824805ad8075e555b41aeda59e.jpg" alt="user profile"
                             className='w-10 h-10 rounded-md' />
                     </Space>
