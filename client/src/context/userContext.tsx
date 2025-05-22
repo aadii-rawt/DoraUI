@@ -1,29 +1,50 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState, ReactNode } from 'react';
 
-const UserContext = createContext();
+// Define the shape of the context value
+interface User {
+  name?: string;
+  email?: string;
+  avatar?: string;
+}
 
-const UserContextProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
-    // const [user, setUser] = useState({
-    //     name: "Aditya",
-    //     email: "adi@g.com",
-    //     avatar : "",
+interface UserContextType {
+  user: User | null;
+  setUser: (user: User | null) => void;
+  notification: string | null;
+  setNotification: (notification: string | null) => void;
+  showSigninModal: boolean;
+  setShowSigninModal: (value: boolean) => void;
+}
 
-    // });
+// Create the context with default value as undefined (for safer use)
+const UserContext = createContext<UserContextType | undefined>(undefined);
 
-    const [loading, setLoading] = useState(true); // Add loading state
-    const [notification, setNotification] = useState(null);
-    const [showSigninModal,setShowSigninModal] = useState(false)
+// Props type for provider
+interface ProviderProps {
+  children: ReactNode;
+}
 
-    return (
-        <UserContext.Provider value={{ user, setUser, notification, setNotification,showSigninModal,setShowSigninModal}}>
-            {children}
-        </UserContext.Provider>
-    );
+const UserContextProvider = ({ children }: ProviderProps) => {
+  const [user, setUser] = useState<User | null>(null);
+  const [notification, setNotification] = useState<string | null>(null);
+  const [showSigninModal, setShowSigninModal] = useState(false);
+
+  return (
+    <UserContext.Provider
+      value={{ user, setUser, notification, setNotification, showSigninModal, setShowSigninModal }}
+    >
+      {children}
+    </UserContext.Provider>
+  );
 };
 
+// Hook with error guard
 const useAuthContext = () => {
-    return useContext(UserContext);
+  const context = useContext(UserContext);
+  if (!context) {
+    throw new Error('useAuthContext must be used within a UserContextProvider');
+  }
+  return context;
 };
 
 export default useAuthContext;
