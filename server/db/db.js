@@ -1,7 +1,5 @@
 const mongoose = require("mongoose")
 
-
-
 const UserSchema = new mongoose.Schema({
   provider: {
     type: String,
@@ -67,21 +65,21 @@ const UserSchema = new mongoose.Schema({
 
 
 
-const ComponentSchema = new mongoose.Schema({
+const ElementSchema = new mongoose.Schema({
     type : String,
     description : String,
     html : String,
     css : String,
     framework : String,
     bgColor : String,
-    // author : {type : mongoose.Schema.Types.ObjectId, ref : "User"},
+    author : {type : mongoose.Schema.Types.ObjectId, ref : "user"},
     createdAt : Number,
     bookmark : {type : Number, default : 0}
 })
 
 
 const User = mongoose.model("Users", UserSchema);
-const Components = mongoose.model("Components",ComponentSchema);
+const Elements = mongoose.model("Elements",ElementSchema);
 
 
-module.exports = {User,Components}
+module.exports = {User,Elements}

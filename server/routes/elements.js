@@ -1,27 +1,45 @@
 const express = require("express");
-const { Components } = require("../db/db");
+const { Elements } = require("../db/db");
+const mongoose = require("mongoose")
 const router = express.Router();
 
-router.post("/", async (req, res) => {
+router.get("/:userId", async (req, res) => {
   try {
-    const { name, type, framework, html, css, preview, bgColor, createdAt } = req.body;
+    console.log(req.params.userId);
+    
+    const userId = mongoose.Types.ObjectId(req.params.userId)
+    console.log(" userid :", userId);
+    
+    const components = await Elements.find({ author: userId }).sort({ createdAt: -1 });
+    console.log(components);
+    res.json(components);
+  } catch (error) {
+    res.status(500).json({ error: 'Something went wrong' });
+  }
+})
 
-    const newComponent = new Components({
+
+router.post("/create", async (req, res) => {
+  try {
+    const { name, type, framework, html, css, preview, bgColor, createdAt, author } = req.body;
+
+    const newElement = new Elements({
       type,
       framework,
       html,
       css,
       bgColor,
       createdAt,
-      author: req.user?._id || null // optional: set user if logged in
+      author
     });
 
-    const saved = await newComponent.save();
+    const saved = await newElement.save();
     res.status(201).json(saved);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Failed to create component" });
+    res.status(500).json({ message: "Failed to create element" });
   }
 });
+
 
 module.exports = router;

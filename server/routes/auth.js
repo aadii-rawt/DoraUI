@@ -40,7 +40,7 @@ passport.use(new GoogleStrategy({
           user.provider = 'google'; // optional: track latest used provider
           user.providerId = googleId;
           user.username = user.username || profile.displayName?.replace(/\s+/g, '').toLowerCase();
-          user.profileImage = user.profileImage || profile.photos?.[0]?.value;
+          user.avatar = user.profileImage || profile.photos?.[0]?.value;
           await user.save();
           return done(null, user);
         }
@@ -77,9 +77,7 @@ passport.use(new GitHubStrategy({
       if (user) {
         return done(null, user);
       }
-      console.log(profile);
-      
-
+      console.log(" profile : ",profile);
 
       if (email) {
         user = await User.findOne({ email });
@@ -100,12 +98,11 @@ passport.use(new GitHubStrategy({
         email: email,
         username: profile.username,
         displayName: profile.displayName,
-        avatar: profile.avatar_url
+        avatar: profile.photos[0].value
       });
 
       console.log(user);
       
-
       return done(null, user);
     } catch (err) {
       return done(err, null);

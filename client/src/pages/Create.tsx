@@ -7,6 +7,7 @@ import { IoMdCheckboxOutline, IoMdSwitch } from "react-icons/io";
 import { FiLoader } from "react-icons/fi";
 import { IoDocumentOutline } from "react-icons/io5";
 import axios from "axios";
+import useAuthContext from "../context/userContext";
 
 type TypeElement = {
   name: string,
@@ -61,9 +62,12 @@ type DataType = {
 }
 
 const Create: React.FC = () => {
+
+  const {user} = useAuthContext()
   const [code, setCode] = useState<string>(
     `<button class="button">Button</button>`
   );
+
   const [bgColor, setBgColor] = useState<string>("#e8e8e8");
   const [isModalOpen, setIsModalOpen] = useState<boolean>(true);
   const [currentTab, setCurrentTab] = useState<string>("html")
@@ -86,10 +90,9 @@ const Create: React.FC = () => {
     try {
       const payload = {
         ...formData,
+        author : user?._id
       };
-
-      const response = await axios.post("http://localhost:3000/api/v1/components", payload);
-
+      const response = await axios.post("http://localhost:5000/api/v1/element/create", payload);
       console.log("Component saved:", response.data);
       alert("Component submitted successfully!");
     } catch (error: any) {

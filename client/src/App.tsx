@@ -8,7 +8,7 @@ import GetCode from './pages/GetCode'
 import { menuItems } from './utils/utils'
 import Create from './pages/Create'
 import { UserContextProvider } from './context/userContext';
-import Profile from './pages/Porfile'
+import Profile from './pages/Profile'
 import SettingLayout from './layout/SettingLayout'
 import { ProfileSetting } from './pages/settings/ProfileSetting'
 import EmailSetting from './pages/settings/EmailSetting'

@@ -42,10 +42,11 @@ app.use(passport.session());
 
 const elements = require("./routes/elements")
 const auth = require("./routes/auth")
+const user = require("./routes/user")
 
-app.use("/api/v1/components", elements)
+app.use("/api/v1/element", elements)
+app.use("/api/v1/user", user)
 app.use(auth)
-
 
 const PORT = process.env.PORT || 5000
 
