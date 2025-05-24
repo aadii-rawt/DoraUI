@@ -3,13 +3,26 @@ const { Elements } = require("../db/db");
 const mongoose = require("mongoose")
 const router = express.Router();
 
+
+router.get("/", async (req, res) => {
+  try {
+    const elements = await Elements.find().sort({ createdAt: -1 });
+    console.log(elements);
+    
+    res.status(200).json(elements);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to fetch elements" });
+  }
+});
+
 router.get("/:userId", async (req, res) => {
   try {
     console.log(req.params.userId);
-    
+
     const userId = mongoose.Types.ObjectId(req.params.userId)
     console.log(" userid :", userId);
-    
+
     const components = await Elements.find({ author: userId }).sort({ createdAt: -1 });
     console.log(components);
     res.json(components);
@@ -17,7 +30,6 @@ router.get("/:userId", async (req, res) => {
     res.status(500).json({ error: 'Something went wrong' });
   }
 })
-
 
 router.post("/create", async (req, res) => {
   try {

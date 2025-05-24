@@ -21,65 +21,40 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  displayName: {
-    type: String
-  },
-  avatar: {
-    type: String
-  },
-  bio: {
-    type: String,
-    default: ''
-  },
-  website: {
-    type: String
-  },
-  location: {
-    type: String
-  },
+  displayName: String,
+  avatar: String,
+  bio: String,
+  website: String,
+  location: String,
   createdAt: {
     type: Date,
     default: Date.now
   },
-  lastLogin: {
-    type: Date,
-    default: Date.now
-  },
-  followers: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
-    }
-  ],
-  following: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
-    }
-  ],
+  company: String,
+  githubAccount: String,
+  twitter: String,
   isAdmin: {
     type: Boolean,
     default: false
   }
 });
 
-
-
 const ElementSchema = new mongoose.Schema({
-    type : String,
-    description : String,
-    html : String,
-    css : String,
-    framework : String,
-    bgColor : String,
-    author : {type : mongoose.Schema.Types.ObjectId, ref : "user"},
-    createdAt : Number,
-    bookmark : {type : Number, default : 0}
+  type: String,
+  backgroundColor : String,
+  isTailwind : Boolean,
+  source : String,
+  status : String,
+  title : String,
+  description: String,
+  html: String,
+  css: String,
+  author: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
+  bookmark: { type: Number, default: 0 },
+  createdAt : Number,
 })
 
-
 const User = mongoose.model("Users", UserSchema);
-const Elements = mongoose.model("Elements",ElementSchema);
+const Elements = mongoose.model("Elements", ElementSchema);
 
-
-module.exports = {User,Elements}
+module.exports = { User, Elements }
