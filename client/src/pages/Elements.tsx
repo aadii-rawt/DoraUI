@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaFilter, FaSearch } from "react-icons/fa";
 import ElementCard from "../components/Element/ElementCard";
 import { ElementType } from "../utils/utils";
+import axios from "axios";
 
-const buttons : ElementType[] = [
+const buttons: ElementType[] = [
   {
     id: 1,
     preview:
@@ -181,7 +182,7 @@ const buttons : ElementType[] = [
     ,
     user: "TaniaDou",
     views: "17K",
-    previewBackground : "#031e49",
+    previewBackground: "#031e49",
     bookmarks: 95,
     comments: 0,
   },
@@ -202,6 +203,21 @@ const buttons : ElementType[] = [
 ];
 
 const Elements: React.FC = () => {
+  const [elements, setElements] = useState({})
+  useEffect(() => {
+    const fetchAllComponents = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/v1/element");
+        console.log("All components:", response.data);
+        setElements(response.data);
+      } catch (error) {
+        console.error("Error fetching all components:", error);
+      }
+    };
+
+    fetchAllComponents();
+  }, []);
+
 
   return (
     <div className="flex-1 min-h-screen text-white px-4 py-5">

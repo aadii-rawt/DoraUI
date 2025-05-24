@@ -48,22 +48,36 @@ const elementsTypes: TypeElement[] = [
   },
 ]
 
+// type DataType = {
+//   id: string,
+//   name: string,
+//   type: string,
+//   framework?: string,
+//   html: string,
+//   css?: string,
+//   preview: string,
+//   bgColor: string,
+//   createdAt: number
+// }
 
 type DataType = {
-  id: string,
-  name: string,         
-  type: string,         
-  framework?: string,    
-  html: string,         
-  css?: string,         
-  preview: string,  
-  bgColor: string, 
-  createdAt: number
+  type: string,
+  backgroundColor: string,
+  isTailwind: Boolean,
+  source: string,
+  status: string,
+  title: string,
+  description: string,
+  html: string,
+  css: string,
+  author: String,
+  bookmark: Number,
+  createdAt: String,
 }
 
 const Create: React.FC = () => {
 
-  const {user} = useAuthContext()
+  const { user } = useAuthContext()
   const [code, setCode] = useState<string>(
     `<button class="button">Button</button>`
   );
@@ -73,25 +87,28 @@ const Create: React.FC = () => {
   const [currentTab, setCurrentTab] = useState<string>("html")
 
   const [formData, setFormdata] = useState<DataType>({
-    id: crypto.randomUUID(),
-    name: "",
-    type: "button",         // 'button', 'toggle', etc.
-    framework: "css",    // 'tailwind' | 'css'
-    html: `<button class="button">Button</button>`,
-    css: ".button { color : red }",         // Raw HTML code  
-    preview: "",      // Rendered preview in iframe
-    bgColor,      // Preview background
+    type: "button",
+    backgroundColor : "",
+    isTailwind : false,
+    source : "",
+    status : "",
+    title : "",
+    description : "",
+    html : "",
+    css : "",
     createdAt: Date.now()
   })
 
-  const handleSubmit = async (): Promise<void> => {
-    console.log(formData);
-
+  const handleSubmit = async () : Promise<void> => {
     try {
       const payload = {
         ...formData,
-        author : user?._id
-      };
+        author : user?._id,
+        createdAt : Date.now(),
+        backgroundColor : bgColor == "#e8e8e8" ? "" : bgColor,
+      }
+      
+      console.log(payload);
       const response = await axios.post("http://localhost:5000/api/v1/element/create", payload);
       console.log("Component saved:", response.data);
       alert("Component submitted successfully!");
@@ -113,10 +130,10 @@ const Create: React.FC = () => {
             className="w-full h-[calc(100vh-160px)]"
             srcDoc={`<html>
                 <head>
-                   ${formData.framework === "tailwindcss" ? '<script src="https://cdn.tailwindcss.com"></script>' : ''}
+                   ${formData.isTailwind ? '<script src="https://cdn.tailwindcss.com"></script>' : ''}
                       <style>
                         html, body { height: 100%; margin: 0; display: flex; align-items: center; justify-content: center; }
-                        ${formData.framework === "css" ? formData.css : ''}
+                        ${!formData.isTailwind ? formData.css : "" }
                       </style>
                 </head>
                 <body>${formData.html}</body>
@@ -137,8 +154,9 @@ const Create: React.FC = () => {
         {/* === Right Editor Pane === */}
         <div className="flex flex-col bg-[#1e1e1e]">
           {/* Editor Header */}
+
           <div className="flex justify-between items-center bg-[#292929] px-4 pt-2.5 text-sm font-medium">
-            {formData.framework == "css" ?
+            {!formData.isTailwind ?
               <div className="flex items-center gap-1">
                 <button onClick={() => setCurrentTab("html")} className={`px-2 py-1.5 w-40 text-left rounded-t-md flex items-center gap-1 ${currentTab === "html" ? "bg-[#1E1E1E]" : "bg-[#171717]"}`}><img src="https://img.icons8.com/color/200/html-5.png" alt="html icon" className="w-5" /> HTML</button>
                 <button onClick={() => setCurrentTab("css")} className={`px-2 py-1.5 w-40 text-left rounded-t-md bg-[#171717] flex items-center gap-1 ${currentTab == "css" ? "bg-[#1E1E1E]" : "bg-[#171717]"}`}> <img src="https://img.icons8.com/fluent/512/css3.png" alt="css icon" className="w-5" />CSS</button>
@@ -152,42 +170,11 @@ const Create: React.FC = () => {
 
           {/* Monaco Editor */}
           <div className="flex-1">
-            {/* {currentTab === "html" ? <Editor
-              height="100%"
-              language="html"
-              theme="vs-dark"
-              value={code}
-              onChange={(value) => setCode(value ?? "")}
-              options={{
-                fontSize: 14,
-                minimap: { enabled: false },
-                wordWrap: "on",
-                tabSize: 2,
-                scrollbar: { vertical: "hidden", horizontal: "hidden" },
-              }}
-            /> :
-              <Editor
-                height="100%"
-                language="css"
-                theme="vs-dark"
-                value={formData.css}
-                onChange={(value) => setFormdata((prev) => ({...prev, css : value}))}
-                options={{
-                  fontSize: 14,
-                  minimap: { enabled: false },
-                  wordWrap: "on",
-                  tabSize: 2,
-                  scrollbar: { vertical: "hidden", horizontal: "hidden" },
-                }}
-              />
-            } */}
-
             {<Editor
               height="100%"
               language={currentTab == "css" ? "css" : "html"}
               theme="vs-dark"
               value={currentTab == "css" ? formData.css : formData.html}
-              // onChange={(value) => setCode(value ?? "")}
               onChange={(value) => setFormdata((prev) => ({ ...prev, [currentTab]: value }))}
               options={{
                 fontSize: 14,
@@ -222,14 +209,14 @@ const Create: React.FC = () => {
                   <div className="text-lg">{item.name}</div>
                 </button>
               ))}
-            </div>
+            </div>         
             <div className="mt-6 flex justify-between items-center">
               <div className="flex gap-4">
-                <button onClick={() => setFormdata((prev) => ({ ...prev, framework: "css" }))} className={`px-3 py-1.5 flex items-center justify-center gap-2 border border-[#4E46E5] text-white rounded-md bg-[#1e1e1e] ${formData.framework === "css" ? 'border-[#4E46E5] bg-[#2a2a2a] ' : 'border-gray-500/50'}`}>
+                <button onClick={() => setFormdata((prev) => ({ ...prev, isTailwind : false }))} className={`px-3 py-1.5 flex items-center justify-center gap-2 border border-[#4E46E5] text-white rounded-md bg-[#1e1e1e] ${!formData.isTailwind ? 'border-[#4E46E5] bg-[#2a2a2a] ' : 'border-gray-500/50'}`}>
                   <img src="https://img.icons8.com/fluent/512/css3.png" alt="" className="w-5" />
                   <span>CSS</span>
                 </button>
-                <button onClick={() => setFormdata((prev) => ({ ...prev, framework: "tailwindcss" }))} className={`px-3 py-1.5 flex items-center justify-center gap-2 border  text-white rounded-md bg-[#1e1e1e] ${formData.framework === "tailwindcss" ? 'border-[#4E46E5] bg-[#2a2a2a] ' : 'border-gray-500/50'}`}>
+                <button onClick={() => setFormdata((prev) => ({ ...prev, isTailwind : true }))} className={`px-3 py-1.5 flex items-center justify-center gap-2 border  text-white rounded-md bg-[#1e1e1e] ${formData.isTailwind ? 'border-[#4E46E5] bg-[#2a2a2a] ' : 'border-gray-500/50'}`}>
                   <img src="https://static-00.iconduck.com/assets.00/tailwind-css-icon-144x86-czphjb87.png" alt="" className="w-5" />
                   <span>Tailwind CSS</span>
                 </button>
