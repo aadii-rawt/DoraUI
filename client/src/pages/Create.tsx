@@ -8,6 +8,8 @@ import { FiLoader } from "react-icons/fi";
 import { IoDocumentOutline } from "react-icons/io5";
 import axios from "axios";
 import useAuthContext from "../context/userContext";
+import { ElementType } from "../utils/utils";
+import CodePreview from "../components/CodePreview";
 
 type TypeElement = {
   name: string,
@@ -48,32 +50,6 @@ const elementsTypes: TypeElement[] = [
   },
 ]
 
-// type DataType = {
-//   id: string,
-//   name: string,
-//   type: string,
-//   framework?: string,
-//   html: string,
-//   css?: string,
-//   preview: string,
-//   bgColor: string,
-//   createdAt: number
-// }
-
-type DataType = {
-  type: string,
-  backgroundColor: string,
-  isTailwind: Boolean,
-  source: string,
-  status: string,
-  title: string,
-  description: string,
-  html: string,
-  css: string,
-  author: String,
-  bookmark: Number,
-  createdAt: String,
-}
 
 const Create: React.FC = () => {
 
@@ -86,28 +62,28 @@ const Create: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(true);
   const [currentTab, setCurrentTab] = useState<string>("html")
 
-  const [formData, setFormdata] = useState<DataType>({
+  const [formData, setFormdata] = useState<ElementType>({
     type: "button",
-    backgroundColor : "",
-    isTailwind : false,
-    source : "",
-    status : "",
-    title : "",
-    description : "",
-    html : "",
-    css : "",
+    backgroundColor: "",
+    isTailwind: false,
+    source: "",
+    status: "",
+    title: "",
+    description: "",
+    html: "",
+    css: "",
     createdAt: Date.now()
   })
 
-  const handleSubmit = async () : Promise<void> => {
+  const handleSubmit = async (): Promise<void> => {
     try {
       const payload = {
         ...formData,
-        author : user?._id,
-        createdAt : Date.now(),
-        backgroundColor : bgColor == "#e8e8e8" ? "" : bgColor,
+        author: user?._id,
+        createdAt: Date.now(),
+        backgroundColor: bgColor == "#e8e8e8" ? "" : bgColor,
       }
-      
+
       console.log(payload);
       const response = await axios.post("http://localhost:5000/api/v1/element/create", payload);
       console.log("Component saved:", response.data);
@@ -123,38 +99,11 @@ const Create: React.FC = () => {
     <div className="min-h-screen p-6 bg-[#111]">
       <div className="bg-[#1a1a1a] rounded-xl overflow-hidden grid grid-cols-1 md:grid-cols-2">
         {/* === Left Preview Pane === */}
-        <div style={{ background: bgColor }} className="relative min-h-[400px] flex items-start justify-center rounded-l-xl">
-          {/* Iframe Preview */}
-          <iframe
-            title="preview"
-            className="w-full h-[calc(100vh-160px)]"
-            srcDoc={`<html>
-                <head>
-                   ${formData.isTailwind ? '<script src="https://cdn.tailwindcss.com"></script>' : ''}
-                      <style>
-                        html, body { height: 100%; margin: 0; display: flex; align-items: center; justify-content: center; }
-                        ${!formData.isTailwind ? formData.css : "" }
-                      </style>
-                </head>
-                <body>${formData.html}</body>
-              </html>`}
-          />
+        <CodePreview element={formData} />
 
-          {/* Color + Toggles */}
-          <div className="absolute top-2 right-2 flex items-center gap-2">
-            <span className=" font-medium text-slate-900 text-xl">{bgColor}</span>
-            <input
-              type="color"
-              value={bgColor}
-              onChange={(e) => setBgColor(e.target.value)}
-              className="w-6 h-6 rounded-md border border-white bg-transparent cursor-pointer"
-            />
-          </div>
-        </div>
         {/* === Right Editor Pane === */}
         <div className="flex flex-col bg-[#1e1e1e]">
           {/* Editor Header */}
-
           <div className="flex justify-between items-center bg-[#292929] px-4 pt-2.5 text-sm font-medium">
             {!formData.isTailwind ?
               <div className="flex items-center gap-1">
@@ -209,14 +158,14 @@ const Create: React.FC = () => {
                   <div className="text-lg">{item.name}</div>
                 </button>
               ))}
-            </div>         
+            </div>
             <div className="mt-6 flex justify-between items-center">
               <div className="flex gap-4">
-                <button onClick={() => setFormdata((prev) => ({ ...prev, isTailwind : false }))} className={`px-3 py-1.5 flex items-center justify-center gap-2 border border-[#4E46E5] text-white rounded-md bg-[#1e1e1e] ${!formData.isTailwind ? 'border-[#4E46E5] bg-[#2a2a2a] ' : 'border-gray-500/50'}`}>
+                <button onClick={() => setFormdata((prev) => ({ ...prev, isTailwind: false }))} className={`px-3 py-1.5 flex items-center justify-center gap-2 border border-[#4E46E5] text-white rounded-md bg-[#1e1e1e] ${!formData.isTailwind ? 'border-[#4E46E5] bg-[#2a2a2a] ' : 'border-gray-500/50'}`}>
                   <img src="https://img.icons8.com/fluent/512/css3.png" alt="" className="w-5" />
                   <span>CSS</span>
                 </button>
-                <button onClick={() => setFormdata((prev) => ({ ...prev, isTailwind : true }))} className={`px-3 py-1.5 flex items-center justify-center gap-2 border  text-white rounded-md bg-[#1e1e1e] ${formData.isTailwind ? 'border-[#4E46E5] bg-[#2a2a2a] ' : 'border-gray-500/50'}`}>
+                <button onClick={() => setFormdata((prev) => ({ ...prev, isTailwind: true }))} className={`px-3 py-1.5 flex items-center justify-center gap-2 border  text-white rounded-md bg-[#1e1e1e] ${formData.isTailwind ? 'border-[#4E46E5] bg-[#2a2a2a] ' : 'border-gray-500/50'}`}>
                   <img src="https://static-00.iconduck.com/assets.00/tailwind-css-icon-144x86-czphjb87.png" alt="" className="w-5" />
                   <span>Tailwind CSS</span>
                 </button>

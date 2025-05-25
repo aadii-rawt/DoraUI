@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { FaArrowLeft, FaRegCopy } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
-import Preview from "../components/Preview";
 import CodeEditor from "../components/CodeEditor";
+import CodePreview from "../components/CodePreview";
 
 const GetCode: React.FC = () => {
   const location = useLocation();
@@ -28,7 +28,7 @@ const GetCode: React.FC = () => {
       {/* Content Grid */}
       <div className="grid md:grid-cols-2 overflow-hidden bg-[#1a1a1a] rounded-xl">
         {/*=============== preview of code ==========================*/}
-        <Preview element={element} />
+        <CodePreview element={element} />
 
         {/*=================== code ======================================*/}
         <div className=" text-left rounded-xl  relative">

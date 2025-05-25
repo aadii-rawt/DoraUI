@@ -3,10 +3,10 @@ import React, { useState } from 'react'
 import { ElementType } from '../utils/utils'
 import { FaRegCopy } from 'react-icons/fa'
 type PropType = {
-    btnData: ElementType
+    element: ElementType
     setElement: React.Dispatch<any>
 }
-const CodeEditor: React.FC<PropType> = ({ element, setElement }) => {
+const CodeEditor: React.FC<PropType> = ({ element }) => {
     const [currentTab, setCurrentTab] = useState<string>("html")
     return (
         <div className="flex h-full flex-col bg-[#1e1e1e]">
@@ -28,8 +28,9 @@ const CodeEditor: React.FC<PropType> = ({ element, setElement }) => {
                     height="100%"
                     language={currentTab == "css" ? "css" : "html"}
                     theme="vs-dark"
+                    
                     value={currentTab == "css" ? element.css : element.html}
-                    // onChange={(value) => setFormdata((prev) => ({ ...prev, [currentTab]: value }))}
+                    onChange={(value) => setFormdata((prev) => ({ ...prev, [currentTab]: value }))}
                     options={{
                         fontSize: 14,
                         minimap: { enabled: false },

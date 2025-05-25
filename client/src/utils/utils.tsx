@@ -24,12 +24,16 @@ export const menuItems: MenuType[] = [
 ];
 
 export type ElementType = {
-    id: string | number,
-    preview: string,
-    user: string,
-    previewBackground?: string,
-    views: string,
-    bookmarks?: string | number,
-    comments: number,
-
+  type: string,
+  backgroundColor: string,
+  isTailwind: Boolean,
+  source: string,
+  status: string,
+  title: string,
+  description: string,
+  html: string,
+  css: string,
+  author: String,
+  bookmark: Number,
+  createdAt: String,
 }
