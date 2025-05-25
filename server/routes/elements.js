@@ -3,12 +3,9 @@ const { Elements } = require("../db/db");
 const mongoose = require("mongoose")
 const router = express.Router();
 
-
 router.get("/", async (req, res) => {
   try {
     const elements = await Elements.find().sort({ createdAt: -1 });
-    console.log(elements);
-    
     res.status(200).json(elements);
   } catch (error) {
     console.error(error);
@@ -33,17 +30,9 @@ router.get("/:userId", async (req, res) => {
 
 router.post("/create", async (req, res) => {
   try {
-    const { name, type, framework, html, css, preview, bgColor, createdAt, author } = req.body;
+    const data = req.body;
 
-    const newElement = new Elements({
-      type,
-      framework,
-      html,
-      css,
-      bgColor,
-      createdAt,
-      author
-    });
+    const newElement = new Elements(data);
 
     const saved = await newElement.save();
     res.status(201).json(saved);

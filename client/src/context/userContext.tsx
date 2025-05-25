@@ -38,8 +38,6 @@ const UserContextProvider = ({ children }: ProviderProps) => {
         const res = await axios.get("http://localhost:5000/auth/me", {
           withCredentials: true, // ✅ Required to send cookies
         });
-
-        console.log("user :", res.data);
         setUser(res.data);
       } catch (err) {
         console.log("User not logged in");

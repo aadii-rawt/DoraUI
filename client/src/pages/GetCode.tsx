@@ -24,17 +24,17 @@ const GetCode: React.FC = () => {
       {/* Content Grid */}
       <div className="grid md:grid-cols-2 overflow-hidden bg-[#1a1a1a] rounded-xl">
         {/*=============== preview of code ==========================*/}
-        <Preview btnData={element} />
+        <Preview element={element} />
 
         {/*=================== code ======================================*/}
         <div className=" text-left rounded-xl  relative">
-          <div className="flex items-center bg-[#292929] p-2 justify-between ">
+          {/* <div className="flex items-center bg-[#292929] p-2 justify-between ">
             <div className="flex items-center gap-2 font-semibold text-sm">
               <span className="text-red-500">HTML</span> + <span className="text-blue-400">TailwindCSS</span>
             </div>
             <FaRegCopy className="text-gray-400 cursor-pointer" />
-          </div>
-            <CodeEditor setElement={setElement} btnData={element} />
+          </div> */}
+            <CodeEditor setElement={setElement} element={element} />
         </div>
       </div>
 

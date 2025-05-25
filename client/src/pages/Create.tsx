@@ -170,7 +170,7 @@ const Create: React.FC = () => {
 
           {/* Monaco Editor */}
           <div className="flex-1">
-            {<Editor
+            <Editor
               height="100%"
               language={currentTab == "css" ? "css" : "html"}
               theme="vs-dark"
@@ -183,7 +183,7 @@ const Create: React.FC = () => {
                 tabSize: 2,
                 scrollbar: { vertical: "hidden", horizontal: "hidden" },
               }}
-            />}
+            />
           </div>
         </div>
       </div>

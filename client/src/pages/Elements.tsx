@@ -203,12 +203,13 @@ const buttons: ElementType[] = [
 ];
 
 const Elements: React.FC = () => {
-  const [elements, setElements] = useState({})
+  const [elements, setElements] = useState([])
   useEffect(() => {
     const fetchAllComponents = async () => {
       try {
         const response = await axios.get("http://localhost:5000/api/v1/element");
-        console.log("All components:", response.data);
+        console.log(response.data);
+        
         setElements(response.data);
       } catch (error) {
         console.error("Error fetching all components:", error);
@@ -254,8 +255,8 @@ const Elements: React.FC = () => {
 
       {/* Grid */}
       <div className="grid md:grid-cols-3 sm:grid-cols-2 gap-6">
-        {buttons.map((btn) => (
-          <ElementCard btn={btn} />
+        {elements?.map((data) => (
+          <ElementCard data={data} />
         ))}
       </div>
     </div>
