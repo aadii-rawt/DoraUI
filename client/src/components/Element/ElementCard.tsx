@@ -12,7 +12,7 @@ const ElementCard: React.FC<PropType> = ({ data }) => {
     const navigate = useNavigate()
 
     const handleGetCode = (data: ElementType): void => {
-        navigate(`/${data?.uid}/${data.id}`, {
+        navigate(`/${data?.author.username}/${data._id}`, {
             state: {
                 data: data
             }
@@ -43,7 +43,7 @@ const ElementCard: React.FC<PropType> = ({ data }) => {
             </div>
 
             <div className="w-full text-left text-sm flex justify-between items-center my-1.5">
-                <p className="text-white font-medium">{data.user}</p>
+                <p className="text-white font-medium">{data.author.username}</p>
                 <div className="flex items-center gap-1 ">
                     <button> <FaBookmark /></button>
                     <span className='text-gray-400'>{data.bookmarks}</span>

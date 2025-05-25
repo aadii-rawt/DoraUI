@@ -16,8 +16,12 @@ const GetCode: React.FC = () => {
           <FaArrowLeft />
           <span className="text-sm font-medium cursor-pointer">Go back</span>
         </button>
-        <div className="flex items-center gap-4 text-black dark:text-white">
-          <h1>Button by {element.user}</h1>
+        <div className="flex items-center gap-2">
+        <p className="capitalize">{element.type} by</p>
+        <div className="flex items-center text-black dark:text-white hover:bg-secondary p-1 rounded-md">
+          <img src={element.author.avatar} className="w-8 h-8 rounded" alt={element.author.username + "avatar"} />
+          <h1 className="px-1.5">{element.author.username}</h1>
+        </div>
         </div>
       </div>
 

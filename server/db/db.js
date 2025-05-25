@@ -49,7 +49,7 @@ const ElementSchema = new mongoose.Schema({
   description: String,
   html: String,
   css: String,
-  author: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
+  author: { type: mongoose.Schema.Types.ObjectId, ref: "Users" },
   bookmark: { type: Number, default: 0 },
   createdAt : Number,
 })

@@ -215,7 +215,6 @@ const Elements: React.FC = () => {
         console.error("Error fetching all components:", error);
       }
     };
-
     fetchAllComponents();
   }, []);
 
