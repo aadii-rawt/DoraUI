@@ -7,7 +7,7 @@ router.get("/", async (req, res) => {
   try {
     const elements = await Elements.find()
       .sort({ createdAt: -1 }) // sort before exec()
-      .populate('author', 'username email avatar') // populate user data
+      .populate('author', 'username email avatar displayName') // populate user data
       .exec();
 
     res.status(200).json(elements);
