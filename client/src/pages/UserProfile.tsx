@@ -7,11 +7,10 @@ import {
     DownOutlined
 } from "@ant-design/icons";
 import { GoCopy } from "react-icons/go";
-import EmptyData from "../components/UI/EmptyData";
-import userContext from "../context/userContext";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { UserPost } from "../components/UserPost";
+import useAuthContext from "../context/userContext";
 
 const tabs = [
     { label: "Posts", active: true, },
@@ -21,9 +20,14 @@ const tabs = [
 const UserProfile: React.FC = () => {
     const { username } = useParams();
     const [user,setUser] = useState({})
+    const {user : currentUser} = useAuthContext()
+    const navigate = useNavigate()
 
     useEffect(() => {
-        console.log("fetching");
+        if (currentUser?.username == username) {
+            navigate('/profile')
+            return
+        }
         const fetchUserComponents = async () => {
             try {
                 const response = await axios.get(`http://localhost:5000/api/v1/user/${username}`);

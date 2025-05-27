@@ -10,6 +10,7 @@ import { GoCopy } from "react-icons/go";
 import EmptyData from "../components/UI/EmptyData";
 import userContext from "../context/userContext";
 import axios from "axios";
+import { UserPost } from "../components/UserPost";
 
 const tabs = [
   { label: "Posts", active: true },
@@ -22,20 +23,20 @@ const tabs = [
 const Profile: React.FC = () => {
   const { user } = userContext()
 
-  useEffect(() => {
-    console.log("fetching");
-    
-    const fetchUserComponents = async () => {
-      try {
-        const response = await axios.get(`http://localhost:5000/api/v1/element/${user?._id}`);
-        console.log(response.data); 
-        return response.data;
-      } catch (error) {
-        console.error("Error fetching components:", error);
-      }
-    };
-    fetchUserComponents()
-  }, [])
+  // useEffect(() => {
+  //   console.log("fetching");
+
+  //   const fetchUserComponents = async () => {
+  //     try {
+  //       const response = await axios.get(`http://localhost:5000/api/v1/element/${user?._id}`);
+  //       console.log(response.data); 
+  //       return response.data;
+  //     } catch (error) {
+  //       console.error("Error fetching components:", error);
+  //     }
+  //   };
+  //   fetchUserComponents()
+  // }, [])
 
   return (
     <div className=" text-white p-6 w-full">
@@ -79,8 +80,8 @@ const Profile: React.FC = () => {
       </div>
 
       <div>
-
-        <EmptyData />
+        <UserPost userId={user?._id}/>
+        {/* <EmptyData /> */}
       </div>
     </div>
   );
