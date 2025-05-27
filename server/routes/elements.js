@@ -20,12 +20,10 @@ router.get("/", async (req, res) => {
 
 router.get("/:userId", async (req, res) => {
   try {
-    console.log(req.params.userId);
-
-    const userId = mongoose.Types.ObjectId(req.params.userId)
+    const userId = req.params.userId
     console.log(" userid :", userId);
-
-    const components = await Elements.find({ author: userId }).sort({ createdAt: -1 });
+    const components = await Elements.find({ author: userId }).sort({ createdAt: -1 })
+    .populate('author', 'username email avatar displayName bio').exec();
     console.log(components);
     res.json(components);
   } catch (error) {

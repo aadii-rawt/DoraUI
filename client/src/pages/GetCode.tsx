@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaArrowLeft, FaRegCopy } from "react-icons/fa";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import CodeEditor from "../components/CodeEditor";
 import CodePreview from "../components/CodePreview";
 import UserContext from "../context/userContext";
@@ -107,15 +107,17 @@ const GetCode: React.FC = () => {
 
           {/* User Info */}
           <div className="flex items-center">
+            <Link to={`/${element.author.username}`}>
             <img
-              src={element.author.avatar} // Replace with real avatar
+              src={element.author.avatar} 
               alt="Author Avatar"
               className="w-12 h-12 rounded-lg mr-3"
             />
-            <div>
-              <div className="font-semibold text-lg">{element.author.username}</div>
-              <div className="text-gray-400 text-sm">{element.author.displayName}</div>
-            </div>
+            </Link>
+            <Link to={`/${element.author.username}`}>
+              <p className="font-semibold text-lg">{element.author.username}</p>
+              <p className="text-gray-400 text-sm">{element.author.displayName}</p>
+            </Link>
           </div>
         </div>
       </div>

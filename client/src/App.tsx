@@ -12,6 +12,7 @@ import Profile from './pages/Profile'
 import SettingLayout from './layout/SettingLayout'
 import { ProfileSetting } from './pages/settings/ProfileSetting'
 import EmailSetting from './pages/settings/EmailSetting'
+import UserProfile from './pages/UserProfile'
 function App() {
   const router = createBrowserRouter([
     {
@@ -26,6 +27,10 @@ function App() {
           path: "",
           element: <ElementLayout />,
           children: [...menuItems.map((item) => ({ path: item.route, element: <Elements /> })),
+          {
+            path: "/:username",
+            element: <UserProfile />
+          },
           {
             path: "/:username/:elementId",
             element: <GetCode />

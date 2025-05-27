@@ -8,7 +8,8 @@ type PropType = {
 }
 
 const ElementCard: React.FC<PropType> = ({ data }) => {
-
+    console.log(data);
+    
     const navigate = useNavigate()
 
     const handleGetCode = (data: ElementType): void => {
