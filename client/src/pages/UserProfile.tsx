@@ -13,13 +13,14 @@ import { UserPost } from "../components/UserPost";
 import useAuthContext from "../context/userContext";
 
 const tabs = [
-    { label: "Posts", active: true, },
-    { label: "Variations", icon: <GoCopy className="text-yellow-500" /> },
+    { label: "Posts", value : "approved",},
+    { label: "Variations", value : "variations", icon: <GoCopy className="text-yellow-500" /> },
 ];
 
 const UserProfile: React.FC = () => {
     const { username } = useParams();
     const [user,setUser] = useState({})
+    const [postType,setPostType] = useState("approved")
     const {user : currentUser} = useAuthContext()
     const navigate = useNavigate()
 
@@ -57,7 +58,8 @@ const UserProfile: React.FC = () => {
                 {tabs.map((tab) => (
                     <button
                         key={tab.label}
-                        className={`flex items-center gap-3 px-3 py-2 rounded-md transition ${tab.active
+                        onClick={() => setPostType(tab.value)}
+                        className={`flex items-center gap-3 px-3 py-2 rounded-md transition ${tab.value == postType
                             ? "bg-secondary text-white"
                             : "text-white hover:bg-secondary"
                             }`}

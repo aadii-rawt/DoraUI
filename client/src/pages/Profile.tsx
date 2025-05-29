@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ClockCircleOutlined,
   CloseCircleOutlined,
@@ -13,15 +13,16 @@ import axios from "axios";
 import { UserPost } from "../components/UserPost";
 
 const tabs = [
-  { label: "Posts", active: true },
-  { label: "Variations", icon: <GoCopy className="text-yellow-500" /> },
-  { label: "Review", icon: <ClockCircleOutlined className="text-yellow-500" /> },
-  { label: "Rejected", icon: <CloseCircleOutlined className="text-red-500" /> },
-  { label: "Drafts", icon: <FolderOpenOutlined className="text-blue-500" /> },
+  { label: "Posts", value: "approved", active: true },
+  { label: "Variations", value: "variations", icon: <GoCopy className="text-yellow-500" /> },
+  { label: "Review", value: "review", icon: <ClockCircleOutlined className="text-yellow-500" /> },
+  { label: "Rejected", value: "rejected", icon: <CloseCircleOutlined className="text-red-500" /> },
+  { label: "Drafts", value: "drafts", icon: <FolderOpenOutlined className="text-blue-500" /> },
 ];
 
 const Profile: React.FC = () => {
   const { user } = userContext()
+  const [postType, setPostType] = useState("approved")
 
   // useEffect(() => {
   //   console.log("fetching");
@@ -56,7 +57,8 @@ const Profile: React.FC = () => {
         {tabs.map((tab) => (
           <button
             key={tab.label}
-            className={`flex items-center gap-3 px-3 py-2 rounded-md transition ${tab.active
+            onClick={() => setPostType(tab.value)}
+            className={`flex items-center gap-3 px-3 py-2 rounded-md transition ${tab.value == postType
               ? "bg-secondary text-white"
               : "text-white hover:bg-secondary"
               }`}
@@ -80,7 +82,7 @@ const Profile: React.FC = () => {
       </div>
 
       <div>
-        <UserPost userId={user?._id}/>
+        <UserPost userId={user?._id} postType={postType} />
         {/* <EmptyData /> */}
       </div>
     </div>

@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import ElementCard from './Element/ElementCard';
 
-export const UserPost: React.FC = ({ userId  }) => {
+export const UserPost: React.FC = ({ userId ,postType }) => {
     const [elements, setElements] = useState([])
 
     useEffect(() => {
