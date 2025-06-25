@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaFilter, FaSearch } from "react-icons/fa";
 import ElementCard from "../components/Element/ElementCard";
 import { ElementType } from "../utils/utils";
-import axios from "axios";
+import axios from "../utils/axios";
 
 
 const Elements: React.FC = () => {
@@ -11,7 +11,7 @@ const Elements: React.FC = () => {
   useEffect(() => {
     const fetchAllComponents = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/v1/element");
+        const response = await axios.get("/element");
         setElements(response.data);
       } catch (error) {
         console.error("Error fetching all components:", error);

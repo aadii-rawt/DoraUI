@@ -6,12 +6,26 @@ import CodePreview from "../components/CodePreview";
 import UserContext from "../context/userContext";
 import { formatDate } from "../utils/utils";
 import { CiCalendar, CiWarning } from "react-icons/ci";
+import { BsBookmark } from "react-icons/bs";
+import axios from "axios";
 
 const GetCode: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate()
   const [element, setElement] = useState(location.state.data || {})
   const { user, setShowSigninModal } = UserContext()
+
+  const handleFavorites = async () => {
+    try {
+      await axios.post(`/posts/${post._id}/favourite`, {
+        userId: currentUserId,
+      });
+      setIsSaved(prev => !prev);
+    } catch (err) {
+      console.error("Failed to toggle save", err);
+    }
+  }
+
   return (
     <div className="flex-1 min-h-screen text-white p-6">
       {/* Header */}
@@ -46,16 +60,9 @@ const GetCode: React.FC = () => {
         </div>
       </div>
 
-      <div className="flex justify-between items-center mt-6 text-sm text-gray-400 border-t border-[#333] pt-4">
-        <div className="flex items-center gap-2">
-          <span>86</span>
-          <span>Save to favorites</span>
-        </div>
-        <div className="flex gap-4">
-          <button className="px-3 py-1 bg-[#1f1f1f] rounded-md">Copy to Figma</button>
-          <button className="px-3 py-1 bg-[#1f1f1f] rounded-md">Export</button>
-          <button className="px-3 py-1 bg-[#1f1f1f] rounded-md">React ⌄</button>
-          <button className="px-3 py-1 bg-[#1f1f1f] rounded-md">Maximize</button>
+      <div className="flex justify-between items-center mt-6 text-sm rounded-lg bg-secondary p-2">
+        <div>
+          <button onClick={handleFavorites} className="p-2 rounded-md hover:bg-gray3rd flex items-center font-medium gap-2 text-[16px]"><BsBookmark size={24} /> Save to favorites</button>
         </div>
       </div>
 
@@ -108,11 +115,11 @@ const GetCode: React.FC = () => {
           {/* User Info */}
           <div className="flex items-center">
             <Link to={`/${element.author.username}`}>
-            <img
-              src={element.author.avatar} 
-              alt="Author Avatar"
-              className="w-12 h-12 rounded-lg mr-3"
-            />
+              <img
+                src={element.author.avatar}
+                alt="Author Avatar"
+                className="w-12 h-12 rounded-lg mr-3"
+              />
             </Link>
             <Link to={`/${element.author.username}`}>
               <p className="font-semibold text-lg">{element.author.username}</p>

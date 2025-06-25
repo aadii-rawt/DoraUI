@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
-import api from '../axios';
+import api from '../utils/axios';
 import axios from 'axios';
 
 // Define the shape of the context value

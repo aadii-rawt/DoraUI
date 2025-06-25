@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-const UserSchema = new mongoose.Schema({
+const user = new mongoose.Schema({
   provider: {
     type: String,
     enum: ['google', 'github', 'twitter'],
@@ -21,6 +21,7 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
+  favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: "Elements" }],
   displayName: String,
   avatar: String,
   bio: String,
@@ -39,22 +40,6 @@ const UserSchema = new mongoose.Schema({
   }
 });
 
-const ElementSchema = new mongoose.Schema({
-  type: String,
-  backgroundColor : String,
-  isTailwind : Boolean,
-  source : String,
-  status : String,
-  title : String,
-  description: String,
-  html: String,
-  css: String,
-  author: { type: mongoose.Schema.Types.ObjectId, ref: "Users" },
-  bookmark: { type: Number, default: 0 },
-  createdAt : Number,
-})
+const UserSchema = mongoose.model("Users", user)
 
-const User = mongoose.model("Users", UserSchema);
-const Elements = mongoose.model("Elements", ElementSchema);
-
-module.exports = { User, Elements }
+module.exports = UserSchema
