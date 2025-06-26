@@ -38,7 +38,7 @@ const ProfileDropDown: React.FC = () => {
     },
     {
         label: (
-            <Link to="/profile" rel="noopener noreferrer" className='flex
+            <Link to="/favorites" rel="noopener noreferrer" className='flex
             gap-3 items-center'>
                 <IoBookmarkOutline size={18} />  Your Fevourite
             </Link>

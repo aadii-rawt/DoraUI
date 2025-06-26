@@ -43,9 +43,9 @@ const getPosts = async (req, res) => {
   }
 }
 
-const saveFavorites = async (req, res) => {
+const handleFavorite = async (req, res) => {
   const userId = req.user;
-  console.log(userId);
+  console.log("user", userId);
 
   const postId = req.params.id;
 
@@ -57,9 +57,9 @@ const saveFavorites = async (req, res) => {
     const alreadySaved = user.favorites.includes(postId);
 
     if (alreadySaved) {
-      user.savedPosts.pull(postId);
+      user.favorites.pull(postId);
     } else {
-      user.savedPosts.push(postId);
+      user.favorites.push(postId);
     }
     await user.save();
 
@@ -70,4 +70,4 @@ const saveFavorites = async (req, res) => {
   }
 }
 
-module.exports = { createElement, getUserPosts, getPosts, saveFavorites }
+module.exports = { createElement, getUserPosts, getPosts, handleFavorite }

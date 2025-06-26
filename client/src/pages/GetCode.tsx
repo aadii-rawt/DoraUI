@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaArrowLeft, FaRegCopy } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import CodeEditor from "../components/CodeEditor";
@@ -6,21 +6,32 @@ import CodePreview from "../components/CodePreview";
 import UserContext from "../context/userContext";
 import { formatDate } from "../utils/utils";
 import { CiCalendar, CiWarning } from "react-icons/ci";
-import { BsBookmark } from "react-icons/bs";
+import { BsBookmark, BsBookmarkFill } from "react-icons/bs";
 import axios from "axios";
+axios.defaults.withCredentials = true
 
 const GetCode: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate()
   const [element, setElement] = useState(location.state.data || {})
   const { user, setShowSigninModal } = UserContext()
+  const [isFavorite, setIsFavorite] = useState(false)
+
+  // console.log(user);
+
+  useEffect(() => {
+    const isFavorite = user?.favorites?.includes(element?._id)
+    setIsFavorite(isFavorite)
+  }, [element, user])
+
 
   const handleFavorites = async () => {
+    if (!user) {
+      return setShowSigninModal(true)
+    }
     try {
-      await axios.post(`/posts/${post._id}/favourite`, {
-        userId: currentUserId,
-      });
-      setIsSaved(prev => !prev);
+      await axios.post(`http://localhost:5000/api/v1/element/${element._id}/favorite`);
+      setIsFavorite(prev => !prev);
     } catch (err) {
       console.error("Failed to toggle save", err);
     }
@@ -62,7 +73,8 @@ const GetCode: React.FC = () => {
 
       <div className="flex justify-between items-center mt-6 text-sm rounded-lg bg-secondary p-2">
         <div>
-          <button onClick={handleFavorites} className="p-2 rounded-md hover:bg-gray3rd flex items-center font-medium gap-2 text-[16px]"><BsBookmark size={24} /> Save to favorites</button>
+          <button onClick={handleFavorites} className="p-2 rounded-md hover:bg-gray3rd flex items-center font-medium gap-2 text-[16px]"> {isFavorite ?  <BsBookmarkFill size={24} />  :  <><BsBookmark size={24} /> Save to favorites</> }</button>
+
         </div>
       </div>
 

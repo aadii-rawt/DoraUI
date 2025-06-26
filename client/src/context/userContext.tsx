@@ -7,7 +7,8 @@ interface User {
   name?: string;
   email?: string;
   avatar?: string;
-  _id? : string | any
+  _id? : string | any;
+  favorites : [] | any
 }
 
 interface UserContextType {
