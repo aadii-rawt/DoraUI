@@ -43,10 +43,25 @@ const getPosts = async (req, res) => {
   }
 }
 
+const getFAvorite = async (req, res) => {
+    const userId = req.user;
+    try {
+        const user = await UserSchema.findById(userId).select("favorites");
+        if (!user) return res.status(404).json({ message: "User not found" });
+        const favoriteIds = user.favorites;
+        // console.log("id", favoriteIds);
+        
+        const favoritePosts = await ElementSchema.find({ _id: { $in: favoriteIds } });
+
+        res.status(200).json(favoritePosts);
+    } catch (err) {
+        console.error("Error fetching favorite posts:", err);
+        res.status(500).json({ message: "Server error" });
+    }
+}
+
 const handleFavorite = async (req, res) => {
   const userId = req.user;
-  console.log("user", userId);
-
   const postId = req.params.id;
 
   try {
@@ -70,4 +85,4 @@ const handleFavorite = async (req, res) => {
   }
 }
 
-module.exports = { createElement, getUserPosts, getPosts, handleFavorite }
+module.exports = { createElement, getUserPosts, getPosts, handleFavorite , getFAvorite}

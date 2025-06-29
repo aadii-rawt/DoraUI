@@ -1,15 +1,10 @@
 import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 import api from '../utils/axios';
 import axios from 'axios';
+import { User } from '../utils/utils';
 
 // Define the shape of the context value
-interface User {
-  name?: string;
-  email?: string;
-  avatar?: string;
-  _id? : string | any;
-  favorites : [] | any
-}
+
 
 interface UserContextType {
   user: User | null;

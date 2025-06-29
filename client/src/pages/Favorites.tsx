@@ -6,21 +6,16 @@ const Favorites: React.FC = () => {
 
     const [favoritePosts, setFavoritePosts] = useState([])
     const [loading, setLoading] = useState(false)
-    console.log("favorites");
-    
-
     const { user } = useAuthContext()
     const fetchFavoritePosts = async () => {
         if (!user) return
         try {
-            const res = await axios.get("/user/favorites")
+            const res = await axios.get("/element/favorites")
             console.log(res);
-
         } catch (error) {
 
         }
     }
-
     useEffect(() => {
         fetchFavoritePosts()
     }, [user])

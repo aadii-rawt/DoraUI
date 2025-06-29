@@ -7,20 +7,20 @@ import { IoMdRadioButtonOn } from "react-icons/io";
 import { IoCheckboxOutline, IoDocumentOutline } from "react-icons/io5";
 
 type MenuType = {
-    icon: JSX.Element,
-    label: string,
-    route: string
+  icon: JSX.Element,
+  label: string,
+  route: string
 }
 
 export const menuItems: MenuType[] = [
-    { icon: <BsGrid />, label: "All", route: "/elements" },
-    { icon: <CgPlayButtonR />, label: "Buttons", route: "/button" },
-    { icon: <IoCheckboxOutline />, label: "Checkboxes", route: "/checkbox" },
-    { icon: <FaToggleOff />, label: "Toggle switches", route: "/toggle" },
-    { icon: <IoDocumentOutline />, label: "Cards", route: "/cards" },
-    { icon: <FiLoader />, label: "Loader", route: "/loader" },
-    { icon: <BsInputCursor />, label: "Input", route: "/input" },
-    { icon: <IoMdRadioButtonOn />, label: "Radio", route: "/radio" },
+  { icon: <BsGrid />, label: "All", route: "/elements" },
+  { icon: <CgPlayButtonR />, label: "Buttons", route: "/button" },
+  { icon: <IoCheckboxOutline />, label: "Checkboxes", route: "/checkbox" },
+  { icon: <FaToggleOff />, label: "Toggle switches", route: "/toggle" },
+  { icon: <IoDocumentOutline />, label: "Cards", route: "/cards" },
+  { icon: <FiLoader />, label: "Loader", route: "/loader" },
+  { icon: <BsInputCursor />, label: "Input", route: "/input" },
+  { icon: <IoMdRadioButtonOn />, label: "Radio", route: "/radio" },
 ];
 
 export type ElementType = {
@@ -36,6 +36,20 @@ export type ElementType = {
   author: String,
   bookmark: Number,
   createdAt: String,
+}
+
+export interface User {
+  displayName: String;
+  name?: string;
+  email?: string;
+  avatar?: string;
+  _id?: string | any;
+  favorites: [] | any;
+  location: String;
+  bio: String;
+  company: String;
+  twitter: String;
+  website: String;
 }
 
 export function formatDate(timestamp) {
