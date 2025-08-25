@@ -168,7 +168,7 @@ router.get("/auth/google/callback",
       httpOnly: true,
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
-    res.redirect("http://localhost:5173/elements"); 
+    res.redirect(process.env.ORIGIN); 
   }
 );
 
@@ -188,7 +188,7 @@ router.get('/auth/github/callback',
       httpOnly: true,
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
-    res.redirect('http://localhost:5173/'); 
+    res.redirect(process.env.ORIGIN); 
   }
 );
 
@@ -202,7 +202,7 @@ router.get('/auth/twitter/callback',
   }),
   (req, res) => {
     // Successful login
-    res.redirect('http://localhost:5173/'); // Change this to your frontend dashboard or landing page
+    res.redirect(process.env.ORIGIN); // Change this to your frontend dashboard or landing page
   }
 );
 
